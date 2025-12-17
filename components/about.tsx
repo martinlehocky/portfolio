@@ -57,7 +57,7 @@ export function About() {
                   <br />
                   English (Native)
                   <br />
-                  German (B1)
+                  German (Intermediate)
                 </p>
               </div>
             </Card>
