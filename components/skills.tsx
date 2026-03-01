@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Code2, Database, Server, Users } from "lucide-react"
+import { Code2, Database, Server, Users, Gamepad2 } from "lucide-react"
 
 export function Skills() {
   const skillCategories = [
@@ -18,6 +18,11 @@ export function Skills() {
       title: "DevOps & Infrastructure",
       icon: Server,
       skills: ["Linux (RHEL)", "Server Administration", "Storage Technologies"],
+    },
+    {
+      title: "Game Development",
+      icon: Gamepad2,
+      skills: ["Unity", "Asset Design"],
     },
     {
       title: "Soft Skills",
