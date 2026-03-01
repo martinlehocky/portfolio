@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Smartphone, Globe, Server } from "lucide-react"
+import { Smartphone, Globe, Server, Calendar } from "lucide-react"
 
 export function Projects() {
   const projects = [
@@ -17,6 +17,13 @@ export function Projects() {
         "Interactive tool for preparing students for state testing (Testovanie 9). Facilitates learning and the preparation process.",
       icon: Globe,
       tags: ["Frontend", "Education", "Interactive"],
+    },
+    {
+      title: "Plannie",
+      description:
+        "Full-stack event scheduling application with a Go backend and Next.js frontend. Features secure authentication, database management, and cloud deployment.",
+      icon: Calendar,
+      tags: ["Go", "Next.js", "PostgreSQL"],
     },
     {
       title: "Home Server Infrastructure",
