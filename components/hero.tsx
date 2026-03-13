@@ -30,14 +30,13 @@ export function Hero() {
       // Split name into characters for staggered animation
       if (nameRef.current) {
         const text = nameRef.current.innerText
-        nameRef.current.innerHTML = text
-          .split("")
-          .map((char) =>
-            char === " "
-              ? '<span class="inline-block">&nbsp;</span>'
-              : `<span class="inline-block">${char}</span>`
-          )
-          .join("")
+        nameRef.current.textContent = ""
+        text.split("").forEach((char) => {
+          const span = document.createElement("span")
+          span.className = "inline-block"
+          span.textContent = char === " " ? "\u00A0" : char
+          nameRef.current!.appendChild(span)
+        })
         const chars = nameRef.current.querySelectorAll("span")
         tl.from(
           chars,

@@ -19,6 +19,16 @@ export function Navigation() {
   const linksRef = useRef<HTMLDivElement>(null)
   const mobileMenuRef = useRef<HTMLDivElement>(null)
 
+  const navItems = [
+    { label: "About", href: "#about" },
+    { label: "Skills", href: "#skills" },
+    { label: "Projects", href: "#projects" },
+    { label: "Events", href: "#events" },
+    { label: "Contact", href: "#contact" },
+  ]
+
+  const NAV_HEIGHT = 64 // matches h-16 (4rem = 64px)
+
   useEffect(() => {
     setMounted(true)
 
@@ -28,21 +38,21 @@ export function Navigation() {
     window.addEventListener("scroll", handleScroll)
 
     // Scroll spy - detect which section is in view
-    const sections = ["about", "skills", "projects", "events", "contact"]
     const observers: IntersectionObserver[] = []
 
-    sections.forEach((id) => {
+    navItems.forEach((item) => {
+      const id = item.href.replace("#", "")
       const el = document.getElementById(id)
       if (el) {
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                setActiveSection(`#${id}`)
+                setActiveSection(item.href)
               }
             })
           },
-          { threshold: 0.3, rootMargin: "-80px 0px -50% 0px" }
+          { threshold: 0.3, rootMargin: `-${NAV_HEIGHT}px 0px -50% 0px` }
         )
         observer.observe(el)
         observers.push(observer)
@@ -104,14 +114,6 @@ export function Navigation() {
       }
     }
   }, [isMobileMenuOpen])
-
-  const navItems = [
-    { label: "About", href: "#about" },
-    { label: "Skills", href: "#skills" },
-    { label: "Projects", href: "#projects" },
-    { label: "Events", href: "#events" },
-    { label: "Contact", href: "#contact" },
-  ]
 
   if (!mounted) {
     return (
