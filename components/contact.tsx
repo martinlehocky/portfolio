@@ -1,8 +1,64 @@
+"use client"
+
+import { useRef, useEffect } from "react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Mail, Phone, Linkedin, MapPin } from "lucide-react"
 
+gsap.registerPlugin(ScrollTrigger)
+
 export function Contact() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const headingRef = useRef<HTMLDivElement>(null)
+  const cardsRef = useRef<HTMLDivElement>(null)
+  const ctaRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(headingRef.current, {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: headingRef.current,
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      })
+
+      if (cardsRef.current) {
+        gsap.from(cardsRef.current.children, {
+          y: 40,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: cardsRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        })
+      }
+
+      gsap.from(ctaRef.current, {
+        y: 20,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ctaRef.current,
+          start: "top 90%",
+          toggleActions: "play none none none",
+        },
+      })
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
   const contactInfo = [
     {
       icon: Mail,
@@ -31,10 +87,10 @@ export function Contact() {
   ]
 
   return (
-    <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8">
+    <section ref={sectionRef} id="contact" className="py-24 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto max-w-6xl">
         <div className="space-y-12">
-          <div className="space-y-4 text-center max-w-2xl mx-auto">
+          <div ref={headingRef} className="space-y-4 text-center max-w-2xl mx-auto">
             <h2 className="text-3xl sm:text-4xl font-bold">Get In Touch</h2>
             <p className="text-lg text-muted-foreground">
               I'm eager to gain practical experience in server and enterprise solutions. I'm most motivated working in
@@ -42,7 +98,7 @@ export function Contact() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div ref={cardsRef} className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {contactInfo.map((contact) => {
               const Icon = contact.icon
               return (
@@ -72,7 +128,7 @@ export function Contact() {
             })}
           </div>
 
-          <div className="text-center">
+          <div ref={ctaRef} className="text-center">
             <Button size="lg" asChild>
               <a href="mailto:martin.lehocky2007@gmail.com">Send Me an Email</a>
             </Button>

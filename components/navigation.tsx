@@ -1,7 +1,8 @@
 
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
+import gsap from "gsap"
 import { Button } from "@/components/ui/button"
 import { Menu, X, Moon, Sun } from "lucide-react"
 import { useTheme } from "@/components/theme-provider"
@@ -11,6 +12,7 @@ export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
   const { theme, toggleTheme } = useTheme()
+  const navRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     setMounted(true)
@@ -21,6 +23,17 @@ export function Navigation() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  useEffect(() => {
+    if (mounted && navRef.current) {
+      gsap.from(navRef.current, {
+        y: -80,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+      })
+    }
+  }, [mounted])
 
   const navItems = [
     { label: "About", href: "#about" },
@@ -95,6 +108,7 @@ export function Navigation() {
 
   return (
       <nav
+          ref={navRef}
           className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
               isScrolled ? "bg-background/80 backdrop-blur-md border-b border-border" : "bg-transparent"
           }`}

@@ -5,10 +5,12 @@ import { Projects } from "@/components/projects"
 import { Events } from "@/components/events"
 import { Contact } from "@/components/contact"
 import { Navigation } from "@/components/navigation"
+import { CustomCursor } from "@/components/custom-cursor"
 
 export default function Page() {
   return (
     <div className="min-h-screen">
+      <CustomCursor />
       <Navigation />
       <main>
         <Hero />
