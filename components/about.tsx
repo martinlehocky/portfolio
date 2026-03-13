@@ -1,12 +1,69 @@
+"use client"
+
+import { useRef, useEffect } from "react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Card } from "@/components/ui/card"
 import { GraduationCap, MapPin, Globe } from "lucide-react"
 
+gsap.registerPlugin(ScrollTrigger)
+
 export function About() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const headingRef = useRef<HTMLDivElement>(null)
+  const cardsRef = useRef<HTMLDivElement>(null)
+  const interestsRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(headingRef.current, {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: headingRef.current,
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      })
+
+      if (cardsRef.current) {
+        gsap.from(cardsRef.current.children, {
+          y: 40,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: cardsRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        })
+      }
+
+      gsap.from(interestsRef.current, {
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: interestsRef.current,
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      })
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 bg-muted/30">
+    <section ref={sectionRef} id="about" className="py-24 px-4 sm:px-6 lg:px-8 bg-muted/30">
       <div className="container mx-auto max-w-6xl">
         <div className="space-y-12">
-          <div className="space-y-4">
+          <div ref={headingRef} className="space-y-4">
             <h2 className="text-3xl sm:text-4xl font-bold">About Me</h2>
             <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl">
               I'm a second-year student in the digital technology programming class at SPŠE Hálova, Bratislava, with a
@@ -15,7 +72,7 @@ export function About() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div ref={cardsRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <Card className="p-6 space-y-4">
               <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center">
                 <GraduationCap className="h-6 w-6 text-primary" />
@@ -63,7 +120,7 @@ export function About() {
             </Card>
           </div>
 
-          <div className="space-y-4">
+          <div ref={interestsRef} className="space-y-4">
             <h3 className="text-2xl font-bold">Interests & Hobbies</h3>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <div className="space-y-2">
