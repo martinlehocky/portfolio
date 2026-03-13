@@ -1,22 +1,11 @@
 
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter, JetBrains_Mono } from "next/font/google"
+import { GeistSans } from "geist/font/sans"
+import { GeistMono } from "geist/font/mono"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-
-const inter = Inter({
-    subsets: ["latin"],
-    variable: "--font-inter",
-    display: "swap",
-})
-
-const jetbrainsMono = JetBrains_Mono({
-    subsets: ["latin"],
-    variable: "--font-jetbrains-mono",
-    display: "swap",
-})
 
 export const metadata: Metadata = {
     title: "Martin Lehocký - Developer Portfolio",
@@ -48,7 +37,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="sk" suppressHydrationWarning>
-        <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
+        <body className={`${GeistSans.variable} ${GeistMono.variable} font-sans antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
             {children}
         </ThemeProvider>
