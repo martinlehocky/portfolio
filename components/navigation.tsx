@@ -17,7 +17,15 @@ export function Navigation() {
   useEffect(() => {
     setMounted(true)
 
-    if (navRef.current) {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  useEffect(() => {
+    if (mounted && navRef.current) {
       gsap.from(navRef.current, {
         y: -80,
         opacity: 0,
@@ -25,13 +33,7 @@ export function Navigation() {
         ease: "power3.out",
       })
     }
-
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, [mounted])
 
   const navItems = [
     { label: "About", href: "#about" },
@@ -45,7 +47,6 @@ export function Navigation() {
   if (!mounted) {
     return (
         <nav
-            ref={navRef}
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
                 isScrolled ? "bg-background/80 backdrop-blur-md border-b border-border" : "bg-transparent"
             }`}

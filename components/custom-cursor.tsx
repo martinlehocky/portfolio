@@ -19,6 +19,13 @@ export function CustomCursor() {
       return
     }
 
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    if (prefersReducedMotion) {
+      cursor.style.display = "none"
+      follower.style.display = "none"
+      return
+    }
+
     const handleMouseMove = (e: MouseEvent) => {
       gsap.to(cursor, {
         x: e.clientX,
@@ -34,30 +41,30 @@ export function CustomCursor() {
       })
     }
 
-    const handleMouseEnterInteractive = () => {
-      gsap.to(cursor, { scale: 1.5, duration: 0.2 })
-      gsap.to(follower, { scale: 1.5, duration: 0.3 })
+    const handleMouseOver = (e: Event) => {
+      const target = e.target as HTMLElement
+      if (target.closest("a, button, [role='button']")) {
+        gsap.to(cursor, { scale: 1.5, duration: 0.2 })
+        gsap.to(follower, { scale: 1.5, duration: 0.3 })
+      }
     }
 
-    const handleMouseLeaveInteractive = () => {
-      gsap.to(cursor, { scale: 1, duration: 0.2 })
-      gsap.to(follower, { scale: 1, duration: 0.3 })
+    const handleMouseOut = (e: Event) => {
+      const target = e.target as HTMLElement
+      if (target.closest("a, button, [role='button']")) {
+        gsap.to(cursor, { scale: 1, duration: 0.2 })
+        gsap.to(follower, { scale: 1, duration: 0.3 })
+      }
     }
 
     window.addEventListener("mousemove", handleMouseMove)
-
-    const interactiveElements = document.querySelectorAll("a, button, [role='button']")
-    interactiveElements.forEach((el) => {
-      el.addEventListener("mouseenter", handleMouseEnterInteractive)
-      el.addEventListener("mouseleave", handleMouseLeaveInteractive)
-    })
+    document.addEventListener("mouseover", handleMouseOver)
+    document.addEventListener("mouseout", handleMouseOut)
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove)
-      interactiveElements.forEach((el) => {
-        el.removeEventListener("mouseenter", handleMouseEnterInteractive)
-        el.removeEventListener("mouseleave", handleMouseLeaveInteractive)
-      })
+      document.removeEventListener("mouseover", handleMouseOver)
+      document.removeEventListener("mouseout", handleMouseOut)
     }
   }, [])
 
