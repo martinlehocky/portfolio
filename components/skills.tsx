@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useEffect } from "react"
+import { useRef, useEffect, useCallback } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Card } from "@/components/ui/card"
@@ -17,10 +17,10 @@ export function Skills() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(headingRef.current, {
-        y: 40,
+        y: 60,
         opacity: 0,
-        duration: 0.8,
-        ease: "power3.out",
+        duration: 1,
+        ease: "power4.out",
         scrollTrigger: {
           trigger: headingRef.current,
           start: "top 85%",
@@ -29,23 +29,69 @@ export function Skills() {
       })
 
       if (cardsRef.current) {
-        gsap.from(cardsRef.current.children, {
-          y: 40,
-          opacity: 0,
-          duration: 0.6,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: cardsRef.current,
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
+        const cards = cardsRef.current.children
+        Array.from(cards).forEach((card, i) => {
+          gsap.from(card, {
+            y: 50,
+            opacity: 0,
+            scale: 0.95,
+            duration: 0.7,
+            delay: i * 0.1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 90%",
+              toggleActions: "play none none none",
+            },
+          })
+
+          // Animate badges inside each card after the card appears
+          const badges = card.querySelectorAll("[data-badge]")
+          gsap.from(badges, {
+            scale: 0,
+            opacity: 0,
+            duration: 0.4,
+            stagger: 0.06,
+            ease: "back.out(1.7)",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+          })
         })
       }
     }, sectionRef)
 
     return () => ctx.revert()
   }, [])
+
+  const handleCardEnter = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    gsap.to(e.currentTarget, {
+      y: -6,
+      boxShadow: "0 20px 50px rgba(0, 0, 0, 0.08)",
+      duration: 0.3,
+      ease: "power2.out",
+    })
+    const icon = e.currentTarget.querySelector("[data-icon]")
+    if (icon) {
+      gsap.to(icon, { rotate: 10, scale: 1.15, duration: 0.3, ease: "power2.out" })
+    }
+  }, [])
+
+  const handleCardLeave = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    gsap.to(e.currentTarget, {
+      y: 0,
+      boxShadow: "0 0 0 rgba(0, 0, 0, 0)",
+      duration: 0.3,
+      ease: "power2.out",
+    })
+    const icon = e.currentTarget.querySelector("[data-icon]")
+    if (icon) {
+      gsap.to(icon, { rotate: 0, scale: 1, duration: 0.3, ease: "power2.out" })
+    }
+  }, [])
+
   const skillCategories = [
     {
       title: "Frontend",
@@ -79,6 +125,7 @@ export function Skills() {
       <div className="container mx-auto max-w-6xl">
         <div className="space-y-12">
           <div ref={headingRef} className="space-y-4">
+            <p className="text-sm font-mono text-primary tracking-wider uppercase">What I work with</p>
             <h2 className="text-3xl sm:text-4xl font-bold">Skills & Expertise</h2>
             <p className="text-lg text-muted-foreground">
               Specialized in modern development technologies with a focus on iOS and web applications
@@ -89,16 +136,26 @@ export function Skills() {
             {skillCategories.map((category) => {
               const Icon = category.icon
               return (
-                <Card key={category.title} className="p-6 space-y-4">
+                <Card
+                  key={category.title}
+                  className="p-6 space-y-4 border-border/50 hover:border-primary/30 transition-colors duration-300"
+                  onMouseEnter={handleCardEnter}
+                  onMouseLeave={handleCardLeave}
+                >
                   <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                      <Icon className="h-5 w-5 text-primary" />
+                    <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
+                      <Icon data-icon className="h-5 w-5 text-primary" />
                     </div>
                     <h3 className="text-xl font-semibold">{category.title}</h3>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {category.skills.map((skill) => (
-                      <Badge key={skill} variant="secondary">
+                      <Badge
+                        key={skill}
+                        data-badge
+                        variant="secondary"
+                        className="hover:bg-primary/10 hover:text-primary transition-colors duration-200 cursor-default"
+                      >
                         {skill}
                       </Badge>
                     ))}
