@@ -1,159 +1,96 @@
 {
-  "meta": {
-    "title": "Martin Lehocky - Developer Portfolio",
-    "description": "Portfolio of Martin Lehocky, an iOS and web developer open to internship opportunities."
+  "Metadata": {
+    "title": "Martin Lehocký - Fullstack Developer",
+    "description": "Building polished fullstack products - from first commit to final deployment."
   },
-  "language": {
-    "label": "Language",
-    "en": "English",
-    "sk": "Slovak",
-    "de": "German"
+  "Nav": {
+    "work": "Work",
+    "story": "Story",
+    "connect": "Connect",
+    "hire": "Hire me →"
   },
-  "nav": {
-    "brand": "Martin Lehocky",
-    "about": "About",
-    "skills": "Skills",
-    "projects": "Projects",
-    "events": "Events",
-    "contact": "Contact",
-    "theme": "Toggle theme",
-    "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+  "Hero": {
+    "label": "FULLSTACK DEVELOPER",
+    "name": "MARTIN LEHOCKÝ",
+    "subtext": "Building polished fullstack products - from first commit to final deployment.",
+    "viewWork": "View Projects ↓",
+    "getInTouch": "Get in touch →"
   },
-  "hero": {
-    "eyebrow": "Developer Portfolio",
-    "name": "Martin Lehocky",
-    "role": "iOS and Web Developer",
-    "description": "I build practical products across mobile and web, with a strong focus on reliability, clean UX, and team collaboration.",
-    "internship": "Currently looking for internship and junior opportunities where I can contribute and grow with experienced teams.",
-    "primaryCta": "View Projects",
-    "secondaryCta": "Get in Touch",
-    "chips": {
-      "location": "Based in Bratislava",
-      "availability": "Open to internships",
-      "teamwork": "Collaboration-driven"
+  "Work": {
+    "label": "PROJECTS & EXPERIENCE",
+    "healthie": {
+      "title": "Healthie",
+      "tags": "SwiftUI · iOS · Health Tracking",
+      "desc": "Daily planner and health tracking - calorie and hydration tracking, built from design to deployment.",
+      "year": "2024"
+    },
+    "plannie": {
+      "title": "Plannie",
+      "tags": "Go · Next.js · PostgreSQL",
+      "desc": "Full-stack event scheduling app with secure auth, DB management, and cloud deployment.",
+      "year": "2025"
+    },
+    "testprep": {
+      "title": "Testovanie 9 Prep",
+      "tags": "Frontend · Education · Interactive",
+      "desc": "Interactive study tool for Slovak state testing, used by students to prepare and self-assess.",
+      "year": "2024"
+    },
+    "homeserver": {
+      "title": "Home Server Infrastructure",
+      "tags": "Linux · RHEL · DevOps",
+      "desc": "Self-managed server infra - storage tech, RHEL administration, and hands-on systems work.",
+      "year": "2023"
     }
   },
-  "about": {
-    "eyebrow": "About",
-    "title": "Building products with curiosity and discipline",
-    "description": "I am a digital technology student at SPSE Halova in Bratislava, focused on application development and enterprise-oriented thinking. I enjoy translating ideas into useful, well-structured software.",
-    "education": {
-      "title": "Education",
-      "content": "SPSE Halova, Bratislava\nDigital Technology Programming\nSecond Year"
-    },
-    "location": {
-      "title": "Location",
-      "content": "Bratislava, Slovakia\nOpen to remote collaboration"
-    },
-    "languages": {
-      "title": "Languages",
-      "content": "Slovak (Native)\nEnglish (Native)\nGerman (Intermediate)"
+  "Phrases": {
+    "build": "I BUILD THINGS THAT ACTUALLY GET USED",
+    "working": "WHAT WORKING WITH ME LOOKS LIKE"
+  },
+  "Story": {
+    "p1": "Growing up in Bratislava, my path into tech started with curiosity, tinkering with servers, then picking up Swift, then shipping real apps.",
+    "p2": "I'm currently a student at SPŠE Hálova studying Digital Technology Programming, building iOS and web projects alongside my studies.",
+    "p3": "I work best in teams with high standards, people who care about both the code and the outcome. Slovak, English, and enough German to get by.",
+    "affiliations": {
+      "school": "Student @ SPŠE Hálova",
+      "location": "Bratislava, Slovakia"
     }
   },
-  "skills": {
-    "eyebrow": "Skills",
-    "title": "Technology and collaboration toolkit",
-    "description": "My core stack combines mobile and web development with backend, infrastructure, and strong team-oriented execution.",
-    "categories": {
-      "frontend": "Frontend & Mobile",
-      "backend": "Backend",
-      "infra": "Infrastructure",
-      "game": "Game Development",
-      "soft": "Team Skills"
+  "TechStack": {
+    "title": "TECH STACK",
+    "subtext": "The tools, languages, and frameworks I use to build robust applications and manage infrastructure.",
+    "frontend": "Frontend & Mobile",
+    "backend": "Backend",
+    "infra": "Infrastructure",
+    "game": "Game Development"
+  },
+  "Events": {
+    "label": "EVENTS & INVOLVEMENT",
+    "organizer": "Organizer",
+    "gamejam": "Game Jam",
+    "hackathon": "Hackathon"
+  },
+  "Traits": {
+    "t1": {
+      "title": "Proactive",
+      "desc": "I flag problems before they become blockers"
     },
-    "items": {
-      "swift": "Swift",
-      "swiftui": "SwiftUI",
-      "vue": "Vue.js",
-      "nuxt": "Nuxt.js",
-      "reactNative": "React Native",
-      "htmlCss": "HTML/CSS",
-      "javascript": "JavaScript",
-      "java": "Java",
-      "csharp": "C#",
-      "go": "Go",
-      "postgres": "PostgreSQL",
-      "linux": "Linux",
-      "rhel": "RHEL",
-      "serverAdmin": "Server Administration",
-      "storage": "Storage Systems",
-      "cloud": "Cloud Deployment",
-      "unity": "Unity",
-      "assetDesign": "Asset Design",
-      "gameplay": "Gameplay Systems",
-      "collaboration": "Team Collaboration",
-      "proactive": "Proactive Ownership",
-      "learning": "Fast Learner",
-      "problemSolving": "Problem Solving"
+    "t2": {
+      "title": "Full ownership",
+      "desc": "design, build, deploy, done"
+    },
+    "t3": {
+      "title": "Team-first",
+      "desc": "I document, communicate, and ship"
     }
   },
-  "projects": {
-    "eyebrow": "Projects",
-    "title": "Selected work",
-    "description": "A few projects that represent my product thinking, technical range, and execution quality.",
-    "items": {
-      "plannie": {
-        "title": "Plannie",
-        "description": "A full-stack event planning platform with Go backend and Next.js frontend, including authentication, data management, and deployment-ready architecture."
-      },
-      "healthie": {
-        "title": "Healthie",
-        "description": "An iOS app focused on daily planning and health tracking, designed and developed end-to-end with practical everyday use in mind."
-      },
-      "testprep": {
-        "title": "Test Preparation Web App",
-        "description": "An interactive education app helping students prepare for national tests through structured practice and clear progress feedback."
-      },
-      "homeserver": {
-        "title": "Home Server Infrastructure",
-        "description": "Hands-on infrastructure learning with Linux environments, storage technologies, and practical server administration workflows."
-      }
-    },
-    "tags": {
-      "go": "Go",
-      "nextjs": "Next.js",
-      "postgres": "PostgreSQL",
-      "auth": "Authentication",
-      "swiftui": "SwiftUI",
-      "ios": "iOS",
-      "health": "Health",
-      "frontend": "Frontend",
-      "education": "Education",
-      "interactive": "Interactive",
-      "linux": "Linux",
-      "rhel": "RHEL",
-      "devops": "DevOps"
-    }
-  },
-  "events": {
-    "eyebrow": "Events",
-    "title": "Hackathons and community events",
-    "description": "I regularly join and help organize events where teams build fast, learn quickly, and share ideas.",
-    "items": {
-      "halovajam": "HalovaJam Hackathon",
-      "halovamake": "HalovaMake",
-      "campfire": "Hack Club Campfire GameJam"
-    },
-    "tags": {
-      "hackathon": "Hackathon",
-      "organizer": "Organizer",
-      "gameJam": "Game Jam"
-    }
-  },
-  "contact": {
-    "eyebrow": "Contact",
-    "title": "Open to internship opportunities",
-    "description": "I am actively looking for internship and junior roles where I can deliver value, learn from senior engineers, and contribute to real products.",
-    "cta": "Send me an email",
+  "Connect": {
+    "heading": "LET'S BUILD SOMETHING",
+    "subtext": "Open to internships, part-time roles, and freelance projects.",
     "email": "Email",
-    "phone": "Phone",
-    "linkedin": "LinkedIn",
-    "location": "Location",
-    "locationValue": "Bratislava, Slovakia",
-    "linkedinValue": "martinlehocky"
+    "linkedin": "LinkedIn"
   },
-  "footer": {
-    "builtWith": "Built with Next.js, Tailwind CSS, and next-intl."
+  "Footer": {
+    "built": "Built with Next.js & Tailwind"
   }
 }

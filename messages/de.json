@@ -1,159 +1,96 @@
 {
-  "meta": {
-    "title": "Martin Lehocky - Entwicklerportfolio",
-    "description": "Portfolio von Martin Lehocky, einem iOS- und Webentwickler, der offen fur Praktika und Junior-Positionen ist."
+  "Metadata": {
+    "title": "Martin Lehocký - Fullstack Entwickler",
+    "description": "Entwicklung hochwertiger Fullstack-Produkte - vom ersten Commit bis zum Deployment."
   },
-  "language": {
-    "label": "Sprache",
-    "en": "Englisch",
-    "sk": "Slowakisch",
-    "de": "Deutsch"
+  "Nav": {
+    "work": "Projekte",
+    "story": "Über mich",
+    "connect": "Kontakt",
+    "hire": "Zusammenarbeiten →"
   },
-  "nav": {
-    "brand": "Martin Lehocky",
-    "about": "Uber mich",
-    "skills": "Fahigkeiten",
-    "projects": "Projekte",
-    "events": "Events",
-    "contact": "Kontakt",
-    "theme": "Design wechseln",
-    "openMenu": "Menu offnen",
-    "closeMenu": "Menu schliessen"
+  "Hero": {
+    "label": "FULLSTACK ENTWICKLER",
+    "name": "MARTIN LEHOCKÝ",
+    "subtext": "Entwicklung hochwertiger Fullstack-Produkte - vom ersten Commit bis zum Deployment.",
+    "viewWork": "Projekte ansehen ↓",
+    "getInTouch": "Kontakt aufnehmen →"
   },
-  "hero": {
-    "eyebrow": "Entwicklerportfolio",
-    "name": "Martin Lehocky",
-    "role": "iOS- und Webentwickler",
-    "description": "Ich entwickle praktische Produkte fur Mobile und Web mit Fokus auf Zuverlassigkeit, klares UX und Teamarbeit.",
-    "internship": "Aktuell suche ich Praktikums- und Junior-Moglichkeiten, in denen ich echten Mehrwert liefern und mit erfahrenen Teams wachsen kann.",
-    "primaryCta": "Projekte ansehen",
-    "secondaryCta": "Kontakt aufnehmen",
-    "chips": {
-      "location": "Standort Bratislava",
-      "availability": "Offen fur Praktika",
-      "teamwork": "Teamorientiert"
+  "Work": {
+    "label": "PROJEKTE & ERFAHRUNG",
+    "healthie": {
+      "title": "Healthie",
+      "tags": "SwiftUI · iOS · Health Tracking",
+      "desc": "Tagesplaner und Gesundheits-Tracker - Kalorien- und Hydratationsverfolgung, vom Design bis zum Release.",
+      "year": "2024"
+    },
+    "plannie": {
+      "title": "Plannie",
+      "tags": "Go · Next.js · PostgreSQL",
+      "desc": "Full-Stack-App für Terminplanung mit sicherer Authentifizierung und Datenbankverwaltung.",
+      "year": "2025"
+    },
+    "testprep": {
+      "title": "Testovanie 9 Prep",
+      "tags": "Frontend · Education · Interactive",
+      "desc": "Interaktives Lerntool für slowakische Staatstests, genutzt von Schülern zur Vorbereitung.",
+      "year": "2024"
+    },
+    "homeserver": {
+      "title": "Home Server Infrastruktur",
+      "tags": "Linux · RHEL · DevOps",
+      "desc": "Selbstverwaltete Server-Infrastruktur - Speichertechnik, RHEL-Administration und Systemarbeit.",
+      "year": "2023"
     }
   },
-  "about": {
-    "eyebrow": "Uber mich",
-    "title": "Produkte mit Neugier und Disziplin entwickeln",
-    "description": "Ich bin Student fur digitale Technologien an der SPSE Halova in Bratislava und fokussiere mich auf Anwendungsentwicklung mit Enterprise-Denken. Besonders motiviert mich, Ideen in nutzliche und sauber strukturierte Software zu verwandeln.",
-    "education": {
-      "title": "Ausbildung",
-      "content": "SPSE Halova, Bratislava\nProgrammierung digitaler Technologien\n2. Jahr"
-    },
-    "location": {
-      "title": "Standort",
-      "content": "Bratislava, Slowakei\nOffen fur Remote-Zusammenarbeit"
-    },
-    "languages": {
-      "title": "Sprachen",
-      "content": "Slowakisch (Muttersprache)\nEnglisch (Muttersprache)\nDeutsch (Mittelstufe)"
+  "Phrases": {
+    "build": "ICH BAUE DINGE DIE WIRKLICH GENUTZT WERDEN",
+    "working": "WIE DIE ARBEIT MIT MIR AUSSIEHT"
+  },
+  "Story": {
+    "p1": "Aufgewachsen in Bratislava, begann mein Weg in die Technik mit Neugierde, dem Basteln an Servern, dann Swift und schließlich echten Apps.",
+    "p2": "Derzeit studiere ich Digitale Technologie und Programmierung an der SPŠE Hálova und entwickle nebenbei iOS- und Webprojekte.",
+    "p3": "Ich arbeite am besten in Teams mit hohen Standards, die Wert auf guten Code und das Endergebnis legen. Slowakisch, Englisch und genug Deutsch zur Verständigung.",
+    "affiliations": {
+      "school": "Student @ SPŠE Hálova",
+      "location": "Bratislava, Slowakei"
     }
   },
-  "skills": {
-    "eyebrow": "Fahigkeiten",
-    "title": "Technischer und kollaborativer Werkzeugkasten",
-    "description": "Mein Kern-Stack verbindet Mobile- und Webentwicklung mit Backend, Infrastruktur und starker Teamorientierung.",
-    "categories": {
-      "frontend": "Frontend & Mobile",
-      "backend": "Backend",
-      "infra": "Infrastruktur",
-      "game": "Spieleentwicklung",
-      "soft": "Team-Kompetenzen"
+  "TechStack": {
+    "title": "TECH STACK",
+    "subtext": "Die Tools, Sprachen und Frameworks, die ich nutze, um robuste Anwendungen zu bauen.",
+    "frontend": "Frontend & Mobile",
+    "backend": "Backend",
+    "infra": "Infrastruktur",
+    "game": "Spieleentwicklung"
+  },
+  "Events": {
+    "label": "EVENTS & ENGAGEMENT",
+    "organizer": "Organisator",
+    "gamejam": "Game Jam",
+    "hackathon": "Hackathon"
+  },
+  "Traits": {
+    "t1": {
+      "title": "Proaktiv",
+      "desc": "Ich erkenne Probleme, bevor sie blockieren"
     },
-    "items": {
-      "swift": "Swift",
-      "swiftui": "SwiftUI",
-      "vue": "Vue.js",
-      "nuxt": "Nuxt.js",
-      "reactNative": "React Native",
-      "htmlCss": "HTML/CSS",
-      "javascript": "JavaScript",
-      "java": "Java",
-      "csharp": "C#",
-      "go": "Go",
-      "postgres": "PostgreSQL",
-      "linux": "Linux",
-      "rhel": "RHEL",
-      "serverAdmin": "Server-Administration",
-      "storage": "Speichersysteme",
-      "cloud": "Cloud-Bereitstellung",
-      "unity": "Unity",
-      "assetDesign": "Asset-Design",
-      "gameplay": "Gameplay-Systeme",
-      "collaboration": "Teamarbeit",
-      "proactive": "Proaktive Verantwortung",
-      "learning": "Schnelle Auffassungsgabe",
-      "problemSolving": "Problemlosung"
+    "t2": {
+      "title": "Verantwortung",
+      "desc": "Design, Entwicklung, Deployment, Fertig"
+    },
+    "t3": {
+      "title": "Team-First",
+      "desc": "Ich dokumentiere, kommuniziere und liefere"
     }
   },
-  "projects": {
-    "eyebrow": "Projekte",
-    "title": "Ausgewahlte Arbeiten",
-    "description": "Einige Projekte, die mein Produktdenken, meine technische Bandbreite und meine Umsetzungsqualitat zeigen.",
-    "items": {
-      "plannie": {
-        "title": "Plannie",
-        "description": "Eine Full-Stack-Plattform fur Eventplanung mit Go-Backend und Next.js-Frontend, inklusive Authentifizierung, Datenverwaltung und architektonischer Vorbereitung fur den produktiven Einsatz."
-      },
-      "healthie": {
-        "title": "Healthie",
-        "description": "Eine iOS-App fur Tagesplanung und Health Tracking, end-to-end entwickelt mit Fokus auf praktischen Mehrwert im Alltag."
-      },
-      "testprep": {
-        "title": "Web-App zur Testvorbereitung",
-        "description": "Eine interaktive Lernanwendung, die Schulerinnen und Schuler mit strukturiertem Training und klarem Feedback auf nationale Tests vorbereitet."
-      },
-      "homeserver": {
-        "title": "Home-Server-Infrastruktur",
-        "description": "Praxisorientiertes Lernen mit Linux-Umgebungen, Speichertechnologien und administrativen Server-Workflows."
-      }
-    },
-    "tags": {
-      "go": "Go",
-      "nextjs": "Next.js",
-      "postgres": "PostgreSQL",
-      "auth": "Authentifizierung",
-      "swiftui": "SwiftUI",
-      "ios": "iOS",
-      "health": "Health",
-      "frontend": "Frontend",
-      "education": "Bildung",
-      "interactive": "Interaktiv",
-      "linux": "Linux",
-      "rhel": "RHEL",
-      "devops": "DevOps"
-    }
-  },
-  "events": {
-    "eyebrow": "Events",
-    "title": "Hackathons und Community-Events",
-    "description": "Ich nehme regelmassig an Events teil und helfe bei der Organisation, bei denen Teams schnell bauen, lernen und Ideen austauschen.",
-    "items": {
-      "halovajam": "HalovaJam Hackathon",
-      "halovamake": "HalovaMake",
-      "campfire": "Hack Club Campfire GameJam"
-    },
-    "tags": {
-      "hackathon": "Hackathon",
-      "organizer": "Organisator",
-      "gameJam": "Game Jam"
-    }
-  },
-  "contact": {
-    "eyebrow": "Kontakt",
-    "title": "Offen fur Praktika und Junior-Rollen",
-    "description": "Ich suche aktiv nach Praktikums- und Junior-Positionen, in denen ich Mehrwert liefern, von Senior Engineers lernen und an echten Produkten mitarbeiten kann.",
-    "cta": "E-Mail senden",
+  "Connect": {
+    "heading": "LASS UNS ETWAS BAUEN",
+    "subtext": "Offen für Praktika, Teilzeitrollen und Freelance-Projekte.",
     "email": "E-Mail",
-    "phone": "Telefon",
-    "linkedin": "LinkedIn",
-    "location": "Standort",
-    "locationValue": "Bratislava, Slowakei",
-    "linkedinValue": "martinlehocky"
+    "linkedin": "LinkedIn"
   },
-  "footer": {
-    "builtWith": "Erstellt mit Next.js, Tailwind CSS und next-intl."
+  "Footer": {
+    "built": "Erstellt mit Next.js & Tailwind"
   }
 }

@@ -1,159 +1,96 @@
 {
-  "meta": {
-    "title": "Martin Lehocky - Portfolio vyvojara",
-    "description": "Portfolio Martina Lehockeho, iOS a weboveho vyvojara otvoreneho stazam a junior poziciam."
+  "Metadata": {
+    "title": "Martin Lehocký - Fullstack Vývojár",
+    "description": "Tvorba vyladených fullstack produktov - od prvého commitu až po nasadenie."
   },
-  "language": {
-    "label": "Jazyk",
-    "en": "Anglictina",
-    "sk": "Slovencina",
-    "de": "Nemcina"
+  "Nav": {
+    "work": "Práca",
+    "story": "Príbeh",
+    "connect": "Kontakt",
+    "hire": "Spolupráca →"
   },
-  "nav": {
-    "brand": "Martin Lehocky",
-    "about": "O mne",
-    "skills": "Zrucnosti",
-    "projects": "Projekty",
-    "events": "Podujatia",
-    "contact": "Kontakt",
-    "theme": "Prepnut temu",
-    "openMenu": "Otvorit menu",
-    "closeMenu": "Zavriet menu"
+  "Hero": {
+    "label": "FULLSTACK VÝVOJÁR",
+    "name": "MARTIN LEHOCKÝ",
+    "subtext": "Tvorba vyladených fullstack produktov - od prvého commitu až po nasadenie.",
+    "viewWork": "Zobraziť projekty ↓",
+    "getInTouch": "Kontaktovať →"
   },
-  "hero": {
-    "eyebrow": "Portfolio vyvojara",
-    "name": "Martin Lehocky",
-    "role": "iOS a webovy vyvojar",
-    "description": "Tvorim prakticke produkty pre mobil a web s dorazom na spolahlivost, ciste UX a timovu spolupracu.",
-    "internship": "Aktualne hladam staz a junior prilezitosti, kde mozem realne prispiet a rast po boku skusenych timov.",
-    "primaryCta": "Zobrazit projekty",
-    "secondaryCta": "Kontaktovat ma",
-    "chips": {
-      "location": "Bratislava",
-      "availability": "Otvoreny staziam",
-      "teamwork": "Timovo orientovany"
+  "Work": {
+    "label": "PROJEKTY A SKÚSENOSTI",
+    "healthie": {
+      "title": "Healthie",
+      "tags": "SwiftUI · iOS · Health Tracking",
+      "desc": "Denný plánovač a sledovanie zdravia - sledovanie kalórií a hydratácie, od návrhu po nasadenie.",
+      "year": "2024"
+    },
+    "plannie": {
+      "title": "Plannie",
+      "tags": "Go · Next.js · PostgreSQL",
+      "desc": "Full-stack aplikácia na plánovanie udalostí s bezpečnou autentifikáciou a databázou.",
+      "year": "2025"
+    },
+    "testprep": {
+      "title": "Testovanie 9 Prep",
+      "tags": "Frontend · Education · Interactive",
+      "desc": "Interaktívna študijná pomôcka pre slovenské štátne testovanie, používaná študentmi na prípravu.",
+      "year": "2024"
+    },
+    "homeserver": {
+      "title": "Home Server Architektúra",
+      "tags": "Linux · RHEL · DevOps",
+      "desc": "Vlastná serverová infraštruktúra - storage, správa RHEL a hands-on systémová práca.",
+      "year": "2023"
     }
   },
-  "about": {
-    "eyebrow": "O mne",
-    "title": "Tvorim produkty so zvedavostou a disciplinou",
-    "description": "Som student digitalnych technologii na SPSE Halova v Bratislave, zamerany na vyvoj aplikacii a enterprise pristup. Bavi ma menit napady na funkcny a dobre strukturovany software.",
-    "education": {
-      "title": "Vzdelanie",
-      "content": "SPSE Halova, Bratislava\nProgramovanie digitalnych technologii\n2. rocnik"
-    },
-    "location": {
-      "title": "Lokalita",
-      "content": "Bratislava, Slovensko\nOtvoreny remote spolupraci"
-    },
-    "languages": {
-      "title": "Jazyky",
-      "content": "Slovencina (rodny jazyk)\nAnglictina (rodny jazyk)\nNemcina (mierne pokrocily)"
+  "Phrases": {
+    "build": "TVORÍM VECI KTORÉ SA REÁLNE POUŽÍVAJÚ",
+    "working": "AKO VYZERÁ SPOLUPRÁCA SO MNOU"
+  },
+  "Story": {
+    "p1": "Vyrastal som v Bratislave a moja cesta do IT začala zvedavosťou, hraním sa so servermi, potom Swiftom a nakoniec reálnymi aplikáciami.",
+    "p2": "Aktuálne študujem programovanie digitálnych technológií na SPŠE Hálova a popri škole vyvíjam iOS a webové projekty.",
+    "p3": "Najlepšie pracujem v tímoch s vysokými štandardmi, s ľuďmi, ktorým záleží na kóde aj na výsledku. Dohovorím sa slovensky, anglicky a trochu aj nemecky.",
+    "affiliations": {
+      "school": "Študent @ SPŠE Hálova",
+      "location": "Bratislava, Slovensko"
     }
   },
-  "skills": {
-    "eyebrow": "Zrucnosti",
-    "title": "Technologicky a timovy toolkit",
-    "description": "Moj stack kombinuje mobilny a webovy vyvoj s backendom, infrastrukturou a timovo orientovanou realizaciou.",
-    "categories": {
-      "frontend": "Frontend a mobilny vyvoj",
-      "backend": "Backend",
-      "infra": "Infrastruktura",
-      "game": "Herny vyvoj",
-      "soft": "Timove zrucnosti"
+  "TechStack": {
+    "title": "TECH STACK",
+    "subtext": "Nástroje, jazyky a technológie, ktoré používam na tvorbu aplikácií a správu infraštruktúry.",
+    "frontend": "Frontend & Mobile",
+    "backend": "Backend",
+    "infra": "Infraštruktúra",
+    "game": "Vývoj hier"
+  },
+  "Events": {
+    "label": "UDALOSTI A AKTIVITY",
+    "organizer": "Organizátor",
+    "gamejam": "Game Jam",
+    "hackathon": "Hackathon"
+  },
+  "Traits": {
+    "t1": {
+      "title": "Proaktivita",
+      "desc": "Riešim problémy predtým, než sa stanú blokátormi"
     },
-    "items": {
-      "swift": "Swift",
-      "swiftui": "SwiftUI",
-      "vue": "Vue.js",
-      "nuxt": "Nuxt.js",
-      "reactNative": "React Native",
-      "htmlCss": "HTML/CSS",
-      "javascript": "JavaScript",
-      "java": "Java",
-      "csharp": "C#",
-      "go": "Go",
-      "postgres": "PostgreSQL",
-      "linux": "Linux",
-      "rhel": "RHEL",
-      "serverAdmin": "Sprava serverov",
-      "storage": "Ulozne systemy",
-      "cloud": "Cloud nasadenie",
-      "unity": "Unity",
-      "assetDesign": "Asset dizajn",
-      "gameplay": "Gameplay systemy",
-      "collaboration": "Timova spolupraca",
-      "proactive": "Proaktivita",
-      "learning": "Rychle ucenie",
-      "problemSolving": "Riesenie problemov"
+    "t2": {
+      "title": "Zodpovednosť",
+      "desc": "návrh, vývoj, nasadenie, hotovo"
+    },
+    "t3": {
+      "title": "Tímový hráč",
+      "desc": "dokumentujem, komunikujem a doručujem"
     }
   },
-  "projects": {
-    "eyebrow": "Projekty",
-    "title": "Vybrane projekty",
-    "description": "Projekty, ktore reprezentuju moje produktove myslenie, technicky zaber a kvalitu realizacie.",
-    "items": {
-      "plannie": {
-        "title": "Plannie",
-        "description": "Full-stack platforma na planovanie podujati s Go backendom a Next.js frontendom, vratane autentifikacie, spravy dat a architektury pripravenej na nasadenie."
-      },
-      "healthie": {
-        "title": "Healthie",
-        "description": "iOS aplikacia zamerana na denny planner a health tracking, navrhnuta a vyvinuta end-to-end s dorazom na realne vyuzitie."
-      },
-      "testprep": {
-        "title": "Webova aplikacia na pripravu na testy",
-        "description": "Interaktivna edukacna aplikacia, ktora pomaha studentom pripravit sa na testovanie cez strukturovany trening a jasny feedback."
-      },
-      "homeserver": {
-        "title": "Home server infrastruktura",
-        "description": "Prakticke skusenosti s Linux prostrediami, uloznymi technologiami a administraciou serverov."
-      }
-    },
-    "tags": {
-      "go": "Go",
-      "nextjs": "Next.js",
-      "postgres": "PostgreSQL",
-      "auth": "Autentifikacia",
-      "swiftui": "SwiftUI",
-      "ios": "iOS",
-      "health": "Health",
-      "frontend": "Frontend",
-      "education": "Vzdelavanie",
-      "interactive": "Interaktivne",
-      "linux": "Linux",
-      "rhel": "RHEL",
-      "devops": "DevOps"
-    }
-  },
-  "events": {
-    "eyebrow": "Podujatia",
-    "title": "Hackathony a komunitne akcie",
-    "description": "Pravidelne sa zucastnujem a pomaham organizovat akcie, kde timy rychlo tvoria, ucia sa a zdielaju napady.",
-    "items": {
-      "halovajam": "HalovaJam Hackathon",
-      "halovamake": "HalovaMake",
-      "campfire": "Hack Club Campfire GameJam"
-    },
-    "tags": {
-      "hackathon": "Hackathon",
-      "organizer": "Organizator",
-      "gameJam": "Game Jam"
-    }
-  },
-  "contact": {
-    "eyebrow": "Kontakt",
-    "title": "Otvoreny staziam a junior poziciam",
-    "description": "Aktivne hladam staz a junior roly, kde mozem prinasat hodnotu, ucit sa od seniornych inzinierov a pracovat na realnych produktoch.",
-    "cta": "Napisat email",
+  "Connect": {
+    "heading": "POĎME NIEČO VYTVORIŤ",
+    "subtext": "Otvorený stážam, part-time rolám a freelance projektom.",
     "email": "Email",
-    "phone": "Telefon",
-    "linkedin": "LinkedIn",
-    "location": "Lokalita",
-    "locationValue": "Bratislava, Slovensko",
-    "linkedinValue": "martinlehocky"
+    "linkedin": "LinkedIn"
   },
-  "footer": {
-    "builtWith": "Vytvorene s Next.js, Tailwind CSS a next-intl."
+  "Footer": {
+    "built": "Vytvorené s Next.js & Tailwind"
   }
 }
