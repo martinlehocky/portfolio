@@ -18,6 +18,12 @@
   },
   "Work": {
     "label": "PROJEKTY A SKÚSENOSTI",
+    "livebook": {
+      "title": "Livebook",
+      "tags": "AI · LegalTech · Hackathon",
+      "desc": "AI-powered právny playbook systém vytvorený na Hacking Legal 2026 v Mníchove. Transformuje statické právne playbooky na živé systémy s Q&A v prirodzenom jazyku, citáciami klauzúl, správou verzií a evolúčným motorom, ktorý rastie s každou vyjednávačskou skúsenosťou.",
+      "year": "2026"
+    },
     "healthie": {
       "title": "Healthie",
       "tags": "SwiftUI · iOS · Health Tracking",
@@ -66,6 +72,7 @@
   },
   "Events": {
     "label": "UDALOSTI A AKTIVITY",
+    "hackinglegal": "Hacking Legal 2026",
     "organizer": "Organizátor",
     "gamejam": "Game Jam",
     "hackathon": "Hackathon"

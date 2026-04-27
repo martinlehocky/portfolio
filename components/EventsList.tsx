@@ -5,6 +5,7 @@ import { gsap } from "@/lib/gsap";
 import { useTranslations } from "next-intl";
 
 const events = [
+  { id: "hackinglegal", name: "Hacking Legal 2026", roleKey: "hackathon", year: "2026" },
   { id: "halovamake", name: "HalovaMake", roleKey: "organizer", year: "2026" },
   { id: "campfire", name: "Hack Club Campfire", roleKey: "gamejam", year: "2026" },
   { id: "halovajam", name: "HalovaJam", roleKey: "hackathon", year: "2025" }

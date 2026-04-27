@@ -1,5 +1,6 @@
 import type {Icon} from "@phosphor-icons/react"
 import {
+  BookOpen,
   CalendarDots,
   Code,
   Database,
@@ -75,6 +76,7 @@ export const skills: SkillCategory[] = [
 ]
 
 export const projects: Project[] = [
+  {id: "livebook", icon: BookOpen, tagIds: ["ai", "legalTech", "hackathon"]},
   {id: "plannie", icon: CalendarDots, tagIds: ["go", "nextjs", "postgres", "auth"]},
   {id: "healthie", icon: DeviceMobile, tagIds: ["swiftui", "ios", "health"]},
   {id: "testprep", icon: GlobeHemisphereWest, tagIds: ["frontend", "education", "interactive"]},
@@ -82,6 +84,7 @@ export const projects: Project[] = [
 ]
 
 export const events: EventItem[] = [
+  {id: "hackinglegal", year: "2026", tagIds: ["hackathon"], icon: Trophy},
   {id: "halovajam", year: "2025", tagIds: ["hackathon"], icon: Trophy},
   {id: "halovamake", year: "2026", tagIds: ["organizer"], icon: Trophy},
   {id: "campfire", year: "2026", tagIds: ["gameJam"], icon: Trophy},

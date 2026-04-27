@@ -10,12 +10,20 @@ export default function WorkGrid() {
 
   const projects = [
     {
+      title: t('livebook.title'),
+      tags: t('livebook.tags'),
+      desc: t('livebook.desc'),
+      year: t('livebook.year'),
+      colSpan: "md:col-span-7",
+      tall: true,
+    },
+    {
       title: t('healthie.title'),
       tags: t('healthie.tags'),
       desc: t('healthie.desc'),
       year: t('healthie.year'),
-      colSpan: "md:col-span-7",
-      tall: true,
+      colSpan: "md:col-span-5",
+      tall: false,
     },
     {
       title: t('plannie.title'),
@@ -30,16 +38,16 @@ export default function WorkGrid() {
       tags: t('testprep.tags'),
       desc: t('testprep.desc'),
       year: t('testprep.year'),
-      colSpan: "md:col-span-5",
-      tall: false,
+      colSpan: "md:col-span-7",
+      tall: true,
     },
     {
       title: t('homeserver.title'),
       tags: t('homeserver.tags'),
       desc: t('homeserver.desc'),
       year: t('homeserver.year'),
-      colSpan: "md:col-span-7",
-      tall: true,
+      colSpan: "md:col-span-12",
+      tall: false,
     }
   ];
 

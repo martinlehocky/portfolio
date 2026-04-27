@@ -18,6 +18,12 @@
   },
   "Work": {
     "label": "PROJECTS & EXPERIENCE",
+    "livebook": {
+      "title": "Livebook",
+      "tags": "AI · LegalTech · Hackathon",
+      "desc": "AI-powered legal playbook system built at Hacking Legal 2026 in Munich. Transforms static legal playbooks into living systems with plain-language Q&A, clause citations, version control, and an evolve engine that grows with every negotiation.",
+      "year": "2026"
+    },
     "healthie": {
       "title": "Healthie",
       "tags": "SwiftUI · iOS · Health Tracking",
@@ -66,6 +72,7 @@
   },
   "Events": {
     "label": "EVENTS & INVOLVEMENT",
+    "hackinglegal": "Hacking Legal 2026",
     "organizer": "Organizer",
     "gamejam": "Game Jam",
     "hackathon": "Hackathon"
