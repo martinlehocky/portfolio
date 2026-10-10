@@ -1,0 +1,2150 @@
+/* „Zápisník“ — a squared school notebook, filled in by hand.
+   Mobile first: phone → 640 (tablet) → 1024 (desktop: margin column) → 1200 (index tabs). */
+
+/* ───────────────────────── Tokens + paper ───────────────────────── */
+
+.page {
+  --paper: #f8f2e4;
+  --paper-shade: #efe6d2;
+  --grid: #dde4ec;
+  --margin-red: #e39a90;
+  --card: #fffdf8;
+  --ink: #1e2430;
+  --muted: #585f6b;
+  --pen: #2348a6;
+  --pen-red: #b42318;
+  --hl: #ffe066;
+  --sticky-yellow: #ffe99a;
+  --sticky-green: #d9ecc8;
+  --sticky-pink: #fbd5cc;
+  --sticky-blue: #cfe0f5;
+  --kraft: #ebd9b4;
+  --tape: rgba(236, 222, 178, 0.78);
+  --rule: #d5e0ec;
+  --shadow: 0 1px 1px rgba(70, 50, 20, 0.08), 0 8px 18px -8px rgba(70, 50, 20, 0.28);
+  --shadow-lift: 0 2px 2px rgba(70, 50, 20, 0.08), 0 16px 26px -10px rgba(70, 50, 20, 0.32);
+  --drop: drop-shadow(0 1px 1px rgba(70, 50, 20, 0.1)) drop-shadow(0 7px 8px rgba(70, 50, 20, 0.16));
+  --drop-lift: drop-shadow(0 2px 2px rgba(70, 50, 20, 0.1)) drop-shadow(0 13px 13px rgba(70, 50, 20, 0.2));
+  --ease: cubic-bezier(0.3, 0.7, 0.4, 1);
+
+  --f-body: var(--nb-body), "Segoe UI", sans-serif;
+  --f-head: var(--nb-head), Georgia, serif;
+  --f-hand: var(--nb-hand), "Comic Sans MS", cursive;
+
+  --fs-h1: clamp(3.25rem, 1.9rem + 5.2vw, 6rem);
+  --fs-h2: clamp(2rem, 1.45rem + 2.4vw, 3.5rem);
+  --fs-h3: clamp(1.375rem, 1.2rem + 0.75vw, 1.75rem);
+  --fs-lead: clamp(1.1875rem, 1.06rem + 0.55vw, 1.4375rem);
+  --fs-body: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  --fs-note: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  --fs-small: 0.9375rem;
+  --fs-hand: clamp(1.25rem, 1.15rem + 0.45vw, 1.5rem);
+  --fs-hand-lg: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
+
+  --gutter: 16px;
+  --pad-l: var(--gutter);
+  --pad-r: var(--gutter);
+  --text-w: 100%;
+
+  color-scheme: light;
+  position: relative;
+  min-height: 100svh;
+  overflow-x: clip;
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: var(--fs-body);
+  line-height: 1.62;
+  hyphens: manual;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: -1px -1px;
+}
+
+/* Punched holes + the red margin line (desktop). Sits at the left edge of the page column. */
+.page::before {
+  content: "";
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: max(0px, calc((100% - 1200px) / 2));
+  width: 96px;
+  pointer-events: none;
+  background:
+    radial-gradient(circle, #e6dbc2 0 8.4px, rgba(90, 66, 30, 0.26) 8.9px 10px, transparent 10.6px) 18px 64px / 20px 96px repeat-y,
+    linear-gradient(var(--margin-red), var(--margin-red)) 88px 0 / 1.5px 100% no-repeat;
+}
+
+.page ::selection {
+  background: var(--hl);
+  color: var(--ink);
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: var(--pad-l) var(--pad-r);
+}
+
+/* The shared reset caps svg at 100% width; doodles here are sized explicitly and may overhang. */
+.page svg {
+  max-width: none;
+}
+
+.main:focus {
+  outline: none;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus: always a visible blue pen ring. */
+.page a:focus-visible {
+  outline: 2.5px solid var(--pen);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Keep the shape of tabs and buttons while focused. Tabs sit half off-screen, so their ring goes inside. */
+.page .tab:focus-visible {
+  border-radius: 10px 0 0 10px;
+  outline-offset: -4px;
+  transform: translateX(0);
+}
+
+.page .btn:focus-visible {
+  border-radius: 10px;
+}
+
+.skip {
+  position: absolute;
+  z-index: 50;
+  top: 12px;
+  left: 16px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--pen);
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: var(--shadow);
+}
+
+.skip:not(:focus) {
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Hand-drawn underline for text links (footer). */
+.penLink {
+  color: var(--pen);
+  text-decoration: none;
+  padding-bottom: 4px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 6' preserveAspectRatio='none'%3E%3Cpath d='M1 4.2 C 18 2.4, 36 5, 55 3.4 S 86 3.8, 99 2.6' fill='none' stroke='%232348A6' stroke-width='1.6' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E")
+    0 100% / 100% 6px no-repeat;
+}
+
+.penLink:hover {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 6' preserveAspectRatio='none'%3E%3Cpath d='M1 4.2 C 18 2.4, 36 5, 55 3.4 S 86 3.8, 99 2.6' fill='none' stroke='%23B42318' stroke-width='1.6' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+  background-position: 0 calc(100% - 1px);
+}
+
+/* ───────────────────────── Shared type ───────────────────────── */
+
+/* Keeps body lines at a comfortable ~60–70 characters. */
+.p {
+  max-width: 30em;
+  text-wrap: pretty;
+}
+
+.p + .p,
+.flow > .p {
+  margin-top: 0.9em;
+}
+
+.flow > .secHead + .p {
+  margin-top: 0;
+}
+
+.h3 {
+  font-family: var(--f-head);
+  font-weight: 400;
+  font-size: var(--fs-h3);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+/* Highlighter swipe: slightly slanted, a bit narrower than the letters. */
+.hl {
+  background-image: linear-gradient(-1.2deg, transparent 6%, var(--hl) 9%, var(--hl) 91%, transparent 94%);
+  background-repeat: no-repeat;
+  background-size: 100% 0.62em;
+  background-position: 0 88%;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  padding: 0 0.15em;
+  margin: 0 -0.15em;
+  border-radius: 0.2em 0.35em 0.25em 0.4em;
+}
+
+.hlText {
+  background-position: 0 90%;
+}
+
+/* A word with a red pen loop around it. */
+.circled {
+  position: relative;
+  display: inline-block;
+  margin-inline: 0.3em 0.2em;
+  white-space: nowrap;
+}
+
+.circledSvg,
+.circledSvgSmall {
+  position: absolute;
+  top: -6px;
+  left: -8px;
+  width: calc(100% + 16px);
+  height: calc(100% + 12px);
+  color: var(--pen-red);
+  pointer-events: none;
+  overflow: visible;
+}
+
+.stats .circled {
+  margin-inline: 0.3em 0;
+}
+
+.circledSvgSmall {
+  top: -4px;
+  left: -7px;
+  width: calc(100% + 16px);
+  height: calc(100% + 8px);
+}
+
+/* Physical things on the page. The resting tilt uses `rotate`, so GSAP can own `transform`. */
+.paper {
+  position: relative;
+}
+
+/* ───────────────────────── Hero ───────────────────────── */
+
+.hero {
+  padding-block: 28px 72px;
+}
+
+.heroGrid {
+  position: relative;
+}
+
+.heroKicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--f-hand);
+  font-size: var(--fs-hand);
+  line-height: 1.25;
+  color: var(--pen);
+  rotate: -1.5deg;
+  transform-origin: 0 50%;
+}
+
+.heroStarWrap {
+  display: inline-block;
+}
+
+.heroStar {
+  width: 24px;
+  height: 24px;
+  color: var(--pen-red);
+}
+
+.polaroidPlace {
+  --pw: min(74vw, 300px);
+  --face-y: calc(12px + (var(--pw) - 24px) * 0.7333);
+  position: relative;
+  width: var(--pw);
+  margin: 76px 0 0 4px;
+}
+
+.polaroid {
+  margin: 0;
+  padding: 12px 12px 0;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  rotate: -2.5deg;
+}
+
+.polaroidTape {
+  position: absolute;
+  z-index: 2;
+  top: -15px;
+  left: 50%;
+  width: 112px;
+  height: 30px;
+  margin-left: -56px;
+  background: var(--tape);
+  rotate: 4deg;
+  clip-path: polygon(3% 0, 97% 4%, 100% 50%, 96% 100%, 2% 96%, 0 45%);
+}
+
+.photoFrame {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #8fa9cb;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.92) contrast(1.02);
+}
+
+.caption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  font-family: var(--f-hand);
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.faceNote {
+  position: absolute;
+  top: -50px;
+  right: -6px;
+  font-family: var(--f-hand);
+  font-size: var(--fs-hand);
+  line-height: 1.2;
+  color: var(--pen);
+  white-space: nowrap;
+  rotate: 4deg;
+}
+
+/* From under the note, across the sky, ending just right of the face (face ≈ x 38 %, y 55 % of the photo). */
+.faceArrowPhone {
+  position: absolute;
+  z-index: 3;
+  top: -16px;
+  left: 52%;
+  width: 42%;
+  height: calc(var(--face-y) + 24px);
+  color: var(--pen);
+  pointer-events: none;
+  filter: drop-shadow(0 0 1px var(--card)) drop-shadow(0 0 1.5px var(--card));
+}
+
+.faceArrowPhone svg,
+.faceArrowDesk svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.faceArrowDesk {
+  display: none;
+}
+
+.h1 {
+  margin-top: 40px;
+  font-family: var(--f-head);
+  font-weight: 400;
+  font-size: var(--fs-h1);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+
+.h1Line {
+  display: block;
+}
+
+.surname {
+  position: relative;
+  width: fit-content;
+}
+
+.surnameLine {
+  position: absolute;
+  left: -1%;
+  right: -3%;
+  bottom: -0.2em;
+  height: 0.16em;
+  min-height: 10px;
+  color: var(--pen-red);
+  pointer-events: none;
+}
+
+.surnameLine svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.heroText {
+  margin-top: 36px;
+}
+
+.lead {
+  max-width: 34ch;
+  font-size: var(--fs-lead);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.intro {
+  max-width: 40ch;
+  margin-top: 0.9em;
+  text-wrap: pretty;
+}
+
+/* Table of contents as a lined index card. */
+.tocPlace {
+  margin-top: 48px;
+}
+
+.toc {
+  max-width: 420px;
+  padding: 10px 20px 14px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  rotate: 1deg;
+}
+
+.tocTitle {
+  margin: 0 -20px;
+  padding: 0 20px 6px;
+  border-bottom: 2px solid var(--margin-red);
+  font-family: var(--f-hand);
+  font-weight: 700;
+  font-size: var(--fs-hand-lg);
+  line-height: 1.15;
+}
+
+.tocList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: repeating-linear-gradient(to bottom, transparent 0 47px, var(--rule) 47px 48px);
+}
+
+.tocLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding-block: 6px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.tocNum {
+  flex: none;
+  width: 16px;
+  font-family: var(--f-head);
+  font-size: 19px;
+  line-height: 1;
+  color: var(--pen);
+}
+
+.tocLabel {
+  font-size: 1.0625rem;
+  line-height: 1.3;
+}
+
+.tocLeader {
+  flex: 1 1 auto;
+  min-width: 10px;
+  height: 0;
+  margin-top: 0.7em;
+  border-bottom: 2px dotted rgba(30, 36, 48, 0.28);
+}
+
+.tocArrow {
+  flex: none;
+  width: 24px;
+  height: 14px;
+  color: var(--pen);
+}
+
+.tocLink:hover .tocLabel {
+  color: var(--pen);
+}
+
+.scrollHint {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+  margin-top: 36px;
+  font-family: var(--f-hand);
+  font-size: var(--fs-hand);
+  line-height: 1.2;
+  color: var(--pen);
+}
+
+.scrollArrow {
+  display: inline-block;
+  width: 22px;
+  height: 28px;
+}
+
+.scrollArrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ───────────────────────── Sections ───────────────────────── */
+
+.section {
+  padding-block: 56px;
+  scroll-margin-top: 0;
+}
+
+.secHead {
+  margin-bottom: 28px;
+}
+
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--f-hand);
+  font-size: var(--fs-hand);
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+.kNum {
+  position: relative;
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 40px;
+}
+
+.kNumDigit {
+  font-family: var(--f-head);
+  font-size: 20px;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.kNumCircle {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--pen-red);
+  overflow: visible;
+}
+
+.kPlain {
+  display: inline-block;
+  color: var(--pen);
+  rotate: -1.5deg;
+}
+
+.h2 {
+  max-width: 18ch;
+  margin-top: 14px;
+  font-family: var(--f-head);
+  font-weight: 400;
+  font-size: var(--fs-h2);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.h2Small {
+  margin-top: 8px;
+  font-family: var(--f-head);
+  font-weight: 400;
+  font-size: var(--fs-h3);
+  line-height: 1.2;
+}
+
+/* ───────── 1 · Kto som ───────── */
+
+.ticketPlace {
+  width: 100%;
+  max-width: 360px;
+  margin: 36px 0 40px 4px;
+  rotate: -1.5deg;
+  filter: var(--drop);
+}
+
+.ticket {
+  display: grid;
+  grid-template-columns: 36% 1fr;
+  min-height: 104px;
+  background: var(--kraft);
+  -webkit-mask:
+    radial-gradient(circle 9px at 36% 0, #0000 98%, #000) top / 100% 51% no-repeat,
+    radial-gradient(circle 9px at 36% 100%, #0000 98%, #000) bottom / 100% 51% no-repeat;
+  mask:
+    radial-gradient(circle 9px at 36% 0, #0000 98%, #000) top / 100% 51% no-repeat,
+    radial-gradient(circle 9px at 36% 100%, #0000 98%, #000) bottom / 100% 51% no-repeat;
+}
+
+.ticketStub {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 12px 14px 16px;
+}
+
+.ticketStubText {
+  font-weight: 700;
+  font-size: 0.9375rem;
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
+
+/* Decorative print marks on the stub. */
+.barcode {
+  display: block;
+  width: 100%;
+  max-width: 96px;
+  height: 20px;
+  opacity: 0.7;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--ink) 0 2px,
+    transparent 2px 4px,
+    var(--ink) 4px 5px,
+    transparent 5px 8px,
+    var(--ink) 8px 11px,
+    transparent 11px 13px,
+    var(--ink) 13px 14px,
+    transparent 14px 17px
+  );
+}
+
+.ticketMain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding: 14px 18px;
+  border-left: 2px dashed rgba(30, 36, 48, 0.35);
+}
+
+.ticketTitle {
+  font-family: var(--f-head);
+  font-size: 1.375rem;
+  line-height: 1.15;
+}
+
+.ticketNote {
+  font-family: var(--f-hand);
+  font-size: 1.25rem;
+  line-height: 1.2;
+  color: var(--pen);
+}
+
+.sticky {
+  --sticky-c: var(--sticky-yellow);
+  width: 85%;
+  max-width: 340px;
+  margin-block: 36px 40px;
+  padding: 18px 20px 24px;
+  background: var(--sticky-c);
+  box-shadow: var(--shadow);
+}
+
+/* Dog-ear in the bottom-right corner. */
+.sticky::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(315deg, var(--paper) 50%, color-mix(in srgb, var(--sticky-c) 80%, #7a5a20) 50%);
+  box-shadow: -1px -1px 2px rgba(70, 50, 20, 0.12);
+}
+
+.stickyYellow {
+  --sticky-c: var(--sticky-yellow);
+}
+
+.stickyGreen {
+  --sticky-c: var(--sticky-green);
+}
+
+.stickyPink {
+  --sticky-c: var(--sticky-pink);
+}
+
+.stickyMaya {
+  margin-left: auto;
+  rotate: 2deg;
+}
+
+.stickyImade {
+  rotate: -1.75deg;
+}
+
+.stickyTape {
+  position: absolute;
+  top: -4px;
+  left: -12px;
+  width: 78px;
+  height: 24px;
+  background: var(--tape);
+  rotate: -30deg;
+  clip-path: polygon(4% 0, 96% 6%, 100% 55%, 95% 100%, 3% 94%, 0 40%);
+}
+
+.stickyTitle {
+  font-family: var(--f-hand);
+  font-weight: 700;
+  font-size: var(--fs-hand);
+  line-height: 1.2;
+}
+
+.stickyText {
+  margin-top: 6px;
+  font-size: var(--fs-note);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+/* ───────── 2 · Prečo ───────── */
+
+.indexCard {
+  padding: 12px 20px 18px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+.cardT9 {
+  max-width: 420px;
+  margin-block: 44px 8px;
+  rotate: -1deg;
+}
+
+.paperClip {
+  position: absolute;
+  z-index: 2;
+  top: -20px;
+  left: 26px;
+  width: 16px;
+  height: 44px;
+  border: 2px solid #8a8f98;
+  border-radius: 8px;
+  rotate: 8deg;
+}
+
+.paperClip::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  top: 9px;
+  bottom: 3px;
+  border: 2px solid #8a8f98;
+  border-top: 0;
+  border-radius: 0 0 5px 5px;
+}
+
+.cardLabel {
+  margin: 0 -20px;
+  padding: 4px 20px 8px 54px;
+  border-bottom: 2px solid var(--margin-red);
+  font-family: var(--f-hand);
+  font-size: 1.25rem;
+  line-height: 1.25;
+  color: var(--pen);
+  text-wrap: balance;
+}
+
+/* Blue rules that sit exactly under each line of text. */
+.ruled {
+  --lh: 28px;
+  line-height: var(--lh);
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 calc(var(--lh) - 1px),
+    var(--rule) calc(var(--lh) - 1px) var(--lh)
+  );
+}
+
+.cardText {
+  margin-top: 10px;
+  font-size: var(--fs-note);
+  text-wrap: pretty;
+}
+
+.teya {
+  margin-top: 64px;
+}
+
+.teya > .h3 {
+  margin-bottom: 14px;
+}
+
+.checklist {
+  margin-block: 32px 36px;
+  padding: 18px 20px 22px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  rotate: 0.5deg;
+}
+
+.checklistTitle {
+  font-family: var(--f-hand);
+  font-weight: 700;
+  font-size: var(--fs-hand);
+  line-height: 1.2;
+}
+
+.checkItems {
+  display: grid;
+  gap: 14px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.checkItem {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  column-gap: 12px;
+  font-size: var(--fs-note);
+  line-height: 1.5;
+}
+
+.checkBox {
+  position: relative;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  margin-top: -1px;
+  color: var(--ink);
+}
+
+.boxSvg {
+  width: 100%;
+  height: 100%;
+}
+
+.checkSvg,
+.crossSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  color: var(--pen);
+}
+
+.crossSvg {
+  color: var(--pen-red);
+}
+
+.wip {
+  position: relative;
+  display: inline-block;
+  margin-left: 4px;
+  font-family: var(--f-hand);
+  font-size: 1.3125rem;
+  line-height: 1.2;
+  color: var(--pen-red);
+  white-space: nowrap;
+  rotate: -3deg;
+}
+
+.wipLine {
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 7px;
+}
+
+.beliefRow {
+  margin-top: 48px;
+}
+
+.marginQuote {
+  position: relative;
+  margin-bottom: 24px;
+  padding-left: 8px;
+}
+
+.marginQuoteText {
+  position: relative;
+  display: inline-block;
+  font-family: var(--f-hand);
+  font-weight: 700;
+  font-size: var(--fs-hand-lg);
+  line-height: 1.15;
+  color: var(--pen);
+  rotate: -3deg;
+}
+
+.marginQuoteLine {
+  position: absolute;
+  left: 2%;
+  bottom: -8px;
+  width: 96%;
+  height: 10px;
+}
+
+.marginQuoteArrow {
+  display: none;
+}
+
+.quoteBreak {
+  display: none;
+}
+
+.lessons {
+  margin-top: 64px;
+}
+
+.lessons > .h3 {
+  margin-bottom: 14px;
+}
+
+.pairTodo {
+  margin-top: 0.9em;
+}
+
+.todoPlace {
+  width: 88%;
+  max-width: 340px;
+  margin: 40px 0 0 auto;
+  rotate: 1.5deg;
+  filter: var(--drop);
+}
+
+.todo {
+  padding: 26px 22px 24px;
+  background: var(--card);
+  clip-path: polygon(0 6px, 4% 0, 9% 5px, 15% 1px, 21% 6px, 28% 0, 35% 5px, 42% 1px, 50% 6px, 57% 0, 64% 5px, 71% 1px, 78% 6px, 85% 0, 92% 5px, 100% 2px, 100% 100%, 0 100%);
+}
+
+.todoTitle {
+  font-family: var(--f-hand);
+  font-weight: 700;
+  font-size: var(--fs-hand-lg);
+  line-height: 1.1;
+}
+
+.todoList {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.todoItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--f-hand);
+  font-size: var(--fs-hand);
+  line-height: 1.25;
+}
+
+.struck {
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+}
+
+.strikeSvg {
+  position: absolute;
+  top: 50%;
+  left: -4px;
+  width: calc(100% + 8px);
+  height: 14px;
+  margin-top: -6px;
+  color: var(--pen-red);
+  overflow: visible;
+}
+
+/* ───────── 3 · Mníchov ───────── */
+
+.stats {
+  display: grid;
+  justify-items: start;
+  width: fit-content;
+  margin: 4px 0 0 10px;
+  padding: 0;
+  list-style: none;
+  font-family: var(--f-hand);
+  font-weight: 700;
+  font-size: var(--fs-hand);
+  line-height: 1.2;
+  color: var(--pen);
+  rotate: -2deg;
+}
+
+.statGroup {
+  display: grid;
+  justify-items: start;
+}
+
+.statLine {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.statArrow {
+  width: 18px;
+  height: 24px;
+  margin: 3px 0 3px 22px;
+}
+
+.textCol {
+  margin-top: 36px;
+}
+
+.livebook {
+  max-width: 760px;
+  margin-block: 40px 40px;
+  padding: 20px 20px 24px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  rotate: -0.75deg;
+}
+
+.lbHead {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.lbTitle {
+  font-family: var(--f-head);
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.1;
+}
+
+.diagram {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+}
+
+.diagramFrom,
+.diagramTo {
+  display: inline-block;
+  padding: 5px 10px 6px;
+  font-family: var(--f-hand);
+  font-size: 1.25rem;
+  line-height: 1.15;
+}
+
+.diagramFrom {
+  width: min-content;
+  border: 2px dashed var(--ink);
+  border-radius: 4px 7px 5px 6px;
+  rotate: -1.5deg;
+}
+
+.diagramTo {
+  font-weight: 700;
+  background: var(--sticky-yellow);
+  border: 2px solid var(--ink);
+  border-radius: 6px 4px 7px 5px;
+  rotate: 1deg;
+}
+
+.diagramArrow {
+  flex: none;
+  width: 52px;
+  height: 22px;
+  color: var(--ink);
+}
+
+.lbIntro {
+  margin-top: 18px;
+  text-wrap: pretty;
+}
+
+.lbCols {
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.lbCol {
+  padding-top: 14px;
+  border-top: 1.5px dashed rgba(30, 36, 48, 0.25);
+}
+
+.lbLabel {
+  font-family: var(--f-hand);
+  font-size: var(--fs-hand);
+  line-height: 1.2;
+  color: var(--pen);
+}
+
+.lbText {
+  margin-top: 4px;
+  font-size: var(--fs-note);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.backNote {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 40px;
+  font-family: var(--f-hand);
+  font-size: var(--fs-hand);
+  line-height: 1.25;
+  color: var(--pen);
+  text-align: right;
+}
+
+.backNoteText {
+  display: inline-block;
+  max-width: 16em;
+  rotate: -2deg;
+}
+
+.backNoteArrow {
+  width: 42px;
+  height: 74px;
+  margin: 6px 18% 0 0;
+}
+
+.sectionProblem {
+  padding-top: 32px;
+}
+
+/* ───────── 4 · Problém ───────── */
+
+.fromNote {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin: 28px 0 4px;
+  font-family: var(--f-hand);
+  font-size: var(--fs-hand);
+  line-height: 1.2;
+  color: var(--pen);
+  rotate: -2deg;
+}
+
+.fromNoteArrow {
+  flex: none;
+  width: 46px;
+  height: 21px;
+  rotate: -28deg;
+  translate: 0 8px;
+}
+
+.qmark {
+  float: right;
+  width: 36px;
+  height: 60px;
+  margin: 6px 4px 8px 18px;
+  color: var(--pen-red);
+}
+
+.qmark + .p {
+  margin-top: 0.9em;
+}
+
+.qmarkSvg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.sticky:last-child {
+  margin-bottom: 0;
+}
+
+.stickyHr {
+  clear: both;
+  width: 92%;
+  max-width: 380px;
+  margin-top: 44px;
+  margin-bottom: 0;
+  rotate: 1deg;
+}
+
+.redacted {
+  position: relative;
+  display: block;
+  width: 140px;
+  height: 18px;
+  margin-top: 14px;
+  color: var(--ink);
+}
+
+.redacted::after {
+  content: "";
+  position: absolute;
+  left: -6px;
+  right: -14px;
+  bottom: 0;
+  border-bottom: 1px solid rgba(30, 36, 48, 0.25);
+}
+
+.redactedSvg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* ───────── Čo som ešte spravil ───────── */
+
+.sectionProjects {
+  padding-bottom: 48px;
+}
+
+.projects {
+  max-width: 760px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project {
+  position: relative;
+  display: grid;
+  gap: 2px;
+  padding-block: 22px;
+}
+
+.projectRule {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-top: 1.5px dashed rgba(30, 36, 48, 0.28);
+}
+
+.projectDate {
+  font-family: var(--f-hand);
+  font-size: 1.25rem;
+  line-height: 1.25;
+  color: var(--pen);
+  font-variant-numeric: tabular-nums;
+}
+
+.projectDateEmpty {
+  display: none;
+}
+
+.projectName {
+  font-family: var(--f-body);
+  font-weight: 700;
+  font-size: var(--fs-body);
+  line-height: 1.35;
+}
+
+.projectText {
+  max-width: 30em;
+  margin-top: 4px;
+  font-size: var(--fs-note);
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+/* ───────── Koniec ───────── */
+
+.sectionEnding {
+  padding-block: 64px 88px;
+}
+
+.letter {
+  max-width: 720px;
+  margin-inline: 4px;
+  padding: 36px 22px 28px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  rotate: -0.5deg;
+}
+
+.letterTape {
+  position: absolute;
+  top: -10px;
+  width: 88px;
+  height: 26px;
+  background: var(--tape);
+  clip-path: polygon(3% 0, 97% 5%, 100% 50%, 96% 100%, 2% 95%, 0 48%);
+}
+
+.letterTapeL {
+  left: -14px;
+  rotate: -35deg;
+}
+
+.letterTapeR {
+  right: -14px;
+  rotate: 35deg;
+}
+
+.letterKicker {
+  font-family: var(--f-hand);
+  font-size: var(--fs-hand);
+  line-height: 1.2;
+  color: var(--pen);
+}
+
+.letterTitle {
+  max-width: 16ch;
+  margin-top: 8px;
+  font-family: var(--f-head);
+  font-weight: 400;
+  font-size: var(--fs-h2);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.letterText {
+  max-width: 46ch;
+  margin-top: 18px;
+  text-wrap: pretty;
+}
+
+.contacts {
+  display: grid;
+  gap: 12px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 52px;
+  padding: 10px 18px;
+  border: 1.5px solid var(--ink);
+  border-radius: 10px;
+  color: var(--ink);
+  font-weight: 700;
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+.btnPrimary {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btnIcon {
+  flex: none;
+}
+
+.btnLabel {
+  display: flex;
+  flex-direction: column;
+}
+
+.btnAddress {
+  font-weight: 400;
+  font-size: var(--fs-small);
+  overflow-wrap: anywhere;
+}
+
+.btnExt {
+  flex: none;
+  margin-left: auto;
+}
+
+.signature {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 28px;
+  padding-right: 8px;
+}
+
+.signatureName {
+  display: inline-block;
+  font-family: var(--f-hand);
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--pen);
+  rotate: -4deg;
+}
+
+.signatureLine {
+  width: 120px;
+  height: 18px;
+  margin-top: 2px;
+  color: var(--pen);
+}
+
+/* ───────── Footer ───────── */
+
+/* Opaque and above the page decoration, so the holes and the margin line stop where the footer starts. */
+.footer {
+  position: relative;
+  z-index: 1;
+  padding-block: 32px;
+  background: var(--paper-shade);
+}
+
+.footerInner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.footerName {
+  font-size: var(--fs-small);
+  color: var(--muted);
+}
+
+.footerTop {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding-block: 10px 8px;
+  font-size: var(--fs-small);
+  background-position: 0 calc(100% - 6px);
+}
+
+.footerTop:hover {
+  background-position: 0 calc(100% - 5px);
+}
+
+/* ───────── Index tabs (desktop) ───────── */
+
+.tabs {
+  display: none;
+}
+
+.tabList {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  width: 128px;
+  height: 48px;
+  padding: 0 28px 0 18px;
+  border-radius: 10px 0 0 10px;
+  font-family: var(--f-hand);
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--ink);
+  text-decoration: none;
+  box-shadow: 0 1px 1px rgba(70, 50, 20, 0.08), 0 4px 10px -4px rgba(70, 50, 20, 0.3);
+  transform: translateX(16px);
+  transition: transform 220ms var(--ease);
+}
+
+.tabList li:nth-child(1) .tab {
+  background: var(--sticky-yellow);
+}
+
+.tabList li:nth-child(2) .tab {
+  background: var(--sticky-green);
+}
+
+.tabList li:nth-child(3) .tab {
+  background: var(--sticky-pink);
+}
+
+.tabList li:nth-child(4) .tab {
+  background: var(--sticky-blue);
+}
+
+.tabList li:nth-child(5) .tab {
+  background: var(--kraft);
+}
+
+.tab:hover,
+.tab:focus-visible {
+  transform: translateX(6px);
+}
+
+.tab[aria-current] {
+  transform: translateX(0);
+  font-weight: 700;
+}
+
+/* ───────────────────────── Hover + micro-interactions ───────────────────────── */
+
+@keyframes wobble {
+  0%,
+  100% {
+    rotate: 0deg;
+  }
+  30% {
+    rotate: -4deg;
+  }
+  65% {
+    rotate: 3deg;
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .paper {
+    transition:
+      rotate 0.35s var(--ease),
+      translate 0.35s var(--ease),
+      box-shadow 0.35s var(--ease),
+      filter 0.35s var(--ease);
+  }
+
+  .paper:hover {
+    rotate: 0deg;
+    translate: 0 -3px;
+    box-shadow: var(--shadow-lift);
+  }
+
+  .ticketPlace:hover,
+  .todoPlace:hover {
+    filter: var(--drop-lift);
+    box-shadow: none;
+  }
+
+  .heroKicker:hover .heroStar,
+  .qmark:hover .qmarkSvg,
+  .backNote:hover .backNoteArrow {
+    animation: wobble 0.6s var(--ease) 1;
+  }
+
+  .tocArrow {
+    transition: translate 0.2s var(--ease);
+  }
+
+  .tocLink:hover .tocArrow {
+    translate: 3px 0;
+  }
+
+  .btn {
+    transition:
+      background-color 0.2s var(--ease),
+      color 0.2s var(--ease),
+      translate 0.12s var(--ease);
+  }
+
+  .btnExt {
+    transition: translate 0.2s var(--ease);
+  }
+
+  .btn:hover .btnExt {
+    translate: 2px -2px;
+  }
+
+  .btn:active {
+    translate: 0 1px;
+  }
+}
+
+@media (hover: hover) {
+  .btn:hover {
+    background: var(--sticky-yellow);
+  }
+
+  .btnPrimary:hover {
+    background: var(--pen);
+    border-color: var(--pen);
+    color: var(--paper);
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: reduce) {
+  .paper:hover {
+    box-shadow: var(--shadow-lift);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab {
+    transition: none;
+  }
+}
+
+/* ───────────────────────── Tablet ≥ 640 ───────────────────────── */
+
+@media (min-width: 640px) {
+  .page {
+    --gutter: 32px;
+  }
+
+  .hero {
+    padding-top: 40px;
+  }
+
+  .polaroidPlace {
+    --pw: 300px;
+    margin-left: 40px;
+  }
+
+  .h1 {
+    margin-top: 48px;
+  }
+
+  .ticketPlace {
+    margin-left: 24px;
+  }
+
+  .stickyMaya {
+    margin-right: 40px;
+  }
+
+  .stickyImade {
+    margin-left: 32px;
+  }
+
+  .cardT9 {
+    margin-right: 24px;
+    margin-left: auto;
+  }
+
+  .todoPlace {
+    margin-right: 32px;
+  }
+
+  .stickyHr {
+    margin-left: 40px;
+  }
+
+  .diagramFrom {
+    width: auto;
+  }
+
+  .lbHead {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .lbCols {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+
+  .letter {
+    margin-inline: auto;
+    padding: 48px 48px 36px;
+  }
+
+  .footerInner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+/* Contacts: primary across the full width, the two secondary links share the second row
+   (from 720 px, where "martinlehocky.com" fits half the letter). */
+@media (min-width: 720px) {
+  .contacts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contacts > li:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .contacts .btn {
+    height: 100%;
+  }
+}
+
+/* Wide tablet: photo and name side by side; the note keeps its phone position above the polaroid. */
+@media (min-width: 720px) and (max-width: 1023.98px) {
+  .heroGrid {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-rows: auto auto auto auto 1fr;
+    column-gap: 64px;
+    align-items: start;
+  }
+
+  .heroKicker {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    justify-self: start;
+  }
+
+  .polaroidPlace {
+    --pw: 280px;
+    grid-column: 1;
+    grid-row: 2 / span 2;
+    margin: 84px 0 0 8px;
+  }
+
+  .h1,
+  .heroText {
+    grid-column: 2;
+  }
+
+  /* The index card goes under both columns, so nothing leaves a hole under the photo. */
+  .tocPlace,
+  .scrollHint {
+    grid-column: 1 / -1;
+    justify-self: end;
+  }
+
+  .tocPlace {
+    width: min(420px, 60%);
+    margin-right: 16px;
+  }
+
+  .h1 {
+    grid-row: 2;
+    margin-top: 84px;
+  }
+
+  .heroText {
+    grid-row: 3;
+    margin-top: 32px;
+  }
+
+  .tocPlace {
+    grid-row: 4;
+    margin-top: 48px;
+  }
+
+  .scrollHint {
+    grid-row: 5;
+    margin-right: 16px;
+  }
+}
+
+/* ───────────────────────── Desktop ≥ 1024: notebook margin column ───────────────────────── */
+
+@media (min-width: 1024px) {
+  .page {
+    --pad-l: 136px;
+    --pad-r: 64px;
+    --text-w: 57%;
+  }
+
+  .page::before {
+    display: block;
+  }
+
+  .section {
+    padding-block: 96px;
+  }
+
+  .h2 {
+    max-width: 24ch;
+  }
+
+  /* Hero: polaroid on the left page, text steps down and to the right. */
+  .hero {
+    padding-block: 64px 72px;
+  }
+
+  .heroGrid {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-rows: auto auto auto auto 1fr;
+    column-gap: clamp(48px, 5vw, 88px);
+    align-items: start;
+    min-height: calc(92svh - 136px);
+  }
+
+  .polaroidPlace {
+    --pw: 320px;
+    grid-column: 1;
+    grid-row: 1 / -1;
+    margin: 28px 0 0 40px;
+  }
+
+  .polaroid {
+    rotate: -2deg;
+  }
+
+  .heroKicker,
+  .h1,
+  .heroText,
+  .tocPlace,
+  .scrollHint {
+    grid-column: 2;
+  }
+
+  .heroKicker {
+    grid-row: 1;
+    justify-self: start;
+  }
+
+  .h1 {
+    grid-row: 2;
+    margin-top: 24px;
+  }
+
+  .heroText {
+    grid-row: 3;
+    margin-top: 32px;
+  }
+
+  .tocPlace {
+    grid-row: 4;
+    width: min(100%, 420px);
+    margin: 44px 0 0 clamp(0px, 4vw, 64px);
+  }
+
+  .scrollHint {
+    grid-row: 5;
+    align-self: end;
+    margin-top: 28px;
+  }
+
+  .faceNote {
+    top: calc(var(--face-y) - 78px);
+    right: auto;
+    left: -150px;
+    rotate: -7deg;
+  }
+
+  .faceArrowPhone {
+    display: none;
+  }
+
+  .faceArrowDesk {
+    display: block;
+    position: absolute;
+    top: calc(var(--face-y) - 33px);
+    left: -78px;
+    width: 140px;
+    height: 56px;
+    color: var(--pen);
+    pointer-events: none;
+  }
+
+  /* Text column + floated margin notes (sidenotes). */
+  .flow {
+    display: flow-root;
+  }
+
+  .flow > .p,
+  .textCol {
+    max-width: var(--text-w);
+  }
+
+  .secHead {
+    max-width: 72%;
+  }
+
+  .ticketPlace {
+    float: right;
+    clear: right;
+    width: 360px;
+    margin: 4px 24px 0 32px;
+  }
+
+  .sticky {
+    float: right;
+    clear: right;
+    width: 300px;
+    margin: 0 0 0 32px;
+  }
+
+  .stickyMaya {
+    margin: 28px 0 0 32px;
+  }
+
+  .stickyImade {
+    float: none;
+    clear: none;
+    width: 320px;
+    margin: 48px 0 0 12%;
+  }
+
+  /* Prečo */
+  .pairTop,
+  .beliefRow,
+  .pairTodo {
+    display: grid;
+    grid-template-columns: var(--text-w) minmax(0, 1fr);
+    column-gap: 48px;
+    align-items: start;
+  }
+
+  .pairTop {
+    grid-template-rows: auto 1fr;
+  }
+
+  .pairTop > .secHead {
+    grid-column: 1;
+    grid-row: 1;
+    max-width: none;
+  }
+
+  .pairTop > .p {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .cardT9 {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    width: min(100%, 360px);
+    margin: 64px 0 0 auto;
+  }
+
+  .teya {
+    max-width: 760px;
+    margin-top: 88px;
+  }
+
+  .checklist {
+    margin-block: 36px 40px;
+    padding: 24px 32px 28px;
+  }
+
+  .beliefRow {
+    margin-top: 72px;
+  }
+
+  .beliefRow > .p {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .marginQuote {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+    padding: 4px 0 0 40px;
+  }
+
+  .marginQuoteText {
+    max-width: 100%;
+    font-size: 2.25rem;
+    rotate: -4deg;
+  }
+
+  .quoteBreak {
+    display: inline;
+  }
+
+  /* Starts under the first word (clear of the „) and curls down-left towards the paragraph. */
+  .marginQuoteArrow {
+    display: block;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 4px;
+    width: 60px;
+    height: 44px;
+    color: var(--pen);
+  }
+
+  .lessons {
+    margin-top: 88px;
+  }
+
+  .lessons > .h3 {
+    max-width: var(--text-w);
+  }
+
+  .pairTodo > .lessonText {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .todoPlace {
+    grid-column: 2;
+    grid-row: 1;
+    width: 350px;
+    margin: 8px 0 0 24px;
+  }
+
+  .todoTitle {
+    font-size: 2.125rem;
+  }
+
+  /* Mníchov */
+  .headRow {
+    display: grid;
+    grid-template-columns: 66% minmax(0, 1fr);
+    column-gap: 40px;
+    align-items: start;
+  }
+
+  .headRow > .secHead {
+    max-width: none;
+    margin-bottom: 0;
+  }
+
+  .stats {
+    justify-self: center;
+    margin-top: 64px;
+  }
+
+  .textCol {
+    margin-top: 40px;
+  }
+
+  .livebook {
+    margin-block: 48px;
+    padding: 28px 32px 30px;
+  }
+
+  .lbCols {
+    gap: 36px;
+  }
+
+  .backNote {
+    width: fit-content;
+    margin: 32px 0 0 42%;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .backNoteArrow {
+    margin: 8px 0 0 52%;
+  }
+
+  /* Problém */
+  .fromNoteArrow {
+    width: 72px;
+    rotate: 0deg;
+    translate: none;
+  }
+
+  .fromNote {
+    float: right;
+    clear: right;
+    margin: 0.5em 24% 0 24px;
+    rotate: -2deg;
+  }
+
+  /* Sits in the margin right next to "otvorená otázka", not out at the page edge. */
+  .qmark {
+    clear: right;
+    width: 54px;
+    height: 90px;
+    margin: 0 calc(100% - var(--text-w) - 54px - 40px) 0 24px;
+  }
+
+  .stickyHr {
+    float: none;
+    clear: both;
+    width: 360px;
+    margin: 56px 0 0 10%;
+  }
+
+  /* Projekty */
+  .projects {
+    max-width: 66%;
+  }
+
+  .project {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 6fr);
+    column-gap: 24px;
+    align-items: baseline;
+  }
+
+  .projectDate {
+    text-align: right;
+  }
+
+  .projectDateEmpty {
+    display: block;
+  }
+
+  /* Koniec */
+  .letter {
+    padding: 56px 64px 48px;
+  }
+
+}
+
+/* Narrow desktop: less room in the margin, so the margin notes tighten up. */
+@media (min-width: 1024px) and (max-width: 1279.98px) {
+  .faceNote {
+    left: -122px;
+  }
+
+  .faceArrowDesk {
+    left: -88px;
+  }
+
+  .headRow {
+    grid-template-columns: 60% minmax(0, 1fr);
+  }
+
+  .marginQuote {
+    padding: 4px 16px 0 26px;
+  }
+
+  .marginQuoteText {
+    font-size: 1.75rem;
+  }
+
+  .marginQuoteArrow {
+    left: -12px;
+  }
+
+  .todoPlace {
+    width: 100%;
+    max-width: 320px;
+    margin-left: 0;
+  }
+
+  .todoTitle {
+    font-size: 1.875rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .polaroidPlace {
+    --pw: 380px;
+    margin-left: 64px;
+  }
+}
+
+/* ───────────────────────── Tabs ≥ 1200 ───────────────────────── */
+
+@media (min-width: 1200px) {
+  /* The content's right edge stays at least ~150 px from the viewport edge: clear of the 128 px tabs. */
+  .page {
+    --pad-r: max(64px, calc(156px - (100vw - 1200px) / 2));
+  }
+
+  .tabs {
+    display: block;
+    position: fixed;
+    z-index: 20;
+    top: 28vh;
+    right: 0;
+  }
+}
