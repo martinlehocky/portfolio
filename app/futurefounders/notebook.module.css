@@ -216,8 +216,7 @@
   white-space: nowrap;
 }
 
-.circledSvg,
-.circledSvgSmall {
+.circledSvg {
   position: absolute;
   top: -6px;
   left: -8px;
@@ -226,17 +225,6 @@
   color: var(--pen-red);
   pointer-events: none;
   overflow: visible;
-}
-
-.stats .circled {
-  margin-inline: 0.3em 0;
-}
-
-.circledSvgSmall {
-  top: -4px;
-  left: -7px;
-  width: calc(100% + 16px);
-  height: calc(100% + 8px);
 }
 
 /* Physical things on the page. The resting tilt uses `rotate`, so GSAP can own `transform`. */
@@ -988,162 +976,11 @@
   overflow: visible;
 }
 
-/* ───────── 3 · Mníchov ───────── */
-
-.stats {
-  display: grid;
-  justify-items: start;
-  width: fit-content;
-  margin: 4px 0 0 10px;
-  padding: 0;
-  list-style: none;
-  font-family: var(--f-hand);
-  font-weight: 700;
-  font-size: var(--fs-hand);
-  line-height: 1.2;
-  color: var(--pen);
-  rotate: -2deg;
-}
-
-.statGroup {
-  display: grid;
-  justify-items: start;
-}
-
-.statLine {
-  display: inline-block;
-  white-space: nowrap;
-}
-
-.statArrow {
-  width: 18px;
-  height: 24px;
-  margin: 3px 0 3px 22px;
-}
-
-.textCol {
-  margin-top: 36px;
-}
-
-.livebook {
-  max-width: 760px;
-  margin-block: 40px 40px;
-  padding: 20px 20px 24px;
-  background: var(--card);
-  box-shadow: var(--shadow);
-  rotate: -0.75deg;
-}
-
-.lbHead {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.lbTitle {
-  font-family: var(--f-head);
-  font-weight: 400;
-  font-size: 1.5rem;
-  line-height: 1.1;
-}
-
-.diagram {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin: 0;
-}
-
-.diagramFrom,
-.diagramTo {
-  display: inline-block;
-  padding: 5px 10px 6px;
-  font-family: var(--f-hand);
-  font-size: 1.25rem;
-  line-height: 1.15;
-}
-
-.diagramFrom {
-  width: min-content;
-  border: 2px dashed var(--ink);
-  border-radius: 4px 7px 5px 6px;
-  rotate: -1.5deg;
-}
-
-.diagramTo {
-  font-weight: 700;
-  background: var(--sticky-yellow);
-  border: 2px solid var(--ink);
-  border-radius: 6px 4px 7px 5px;
-  rotate: 1deg;
-}
-
-.diagramArrow {
-  flex: none;
-  width: 52px;
-  height: 22px;
-  color: var(--ink);
-}
-
-.lbIntro {
-  margin-top: 18px;
-  text-wrap: pretty;
-}
-
-.lbCols {
-  display: grid;
-  gap: 18px;
-  margin-top: 18px;
-}
-
-.lbCol {
-  padding-top: 14px;
-  border-top: 1.5px dashed rgba(30, 36, 48, 0.25);
-}
-
-.lbLabel {
-  font-family: var(--f-hand);
-  font-size: var(--fs-hand);
-  line-height: 1.2;
-  color: var(--pen);
-}
-
-.lbText {
-  margin-top: 4px;
-  font-size: var(--fs-note);
-  line-height: 1.5;
-  text-wrap: pretty;
-}
-
-.backNote {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  margin-top: 40px;
-  font-family: var(--f-hand);
-  font-size: var(--fs-hand);
-  line-height: 1.25;
-  color: var(--pen);
-  text-align: right;
-}
-
-.backNoteText {
-  display: inline-block;
-  max-width: 16em;
-  rotate: -2deg;
-}
-
-.backNoteArrow {
-  width: 42px;
-  height: 74px;
-  margin: 6px 18% 0 0;
-}
-
 .sectionProblem {
   padding-top: 32px;
 }
 
-/* ───────── 4 · Problém ───────── */
+/* ───────── 3 · Problém ───────── */
 
 .fromNote {
   display: flex;
@@ -1539,8 +1376,7 @@
   }
 
   .heroKicker:hover .heroStar,
-  .qmark:hover .qmarkSvg,
-  .backNote:hover .backNoteArrow {
+  .qmark:hover .qmarkSvg {
     animation: wobble 0.6s var(--ease) 1;
   }
 
@@ -1639,22 +1475,6 @@
 
   .stickyHr {
     margin-left: 40px;
-  }
-
-  .diagramFrom {
-    width: auto;
-  }
-
-  .lbHead {
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .lbCols {
-    grid-template-columns: 1fr 1fr;
-    gap: 28px;
   }
 
   .letter {
@@ -1854,8 +1674,7 @@
     display: flow-root;
   }
 
-  .flow > .p,
-  .textCol {
+  .flow > .p {
     max-width: var(--text-w);
   }
 
@@ -1991,48 +1810,6 @@
     font-size: 2.125rem;
   }
 
-  /* Mníchov */
-  .headRow {
-    display: grid;
-    grid-template-columns: 66% minmax(0, 1fr);
-    column-gap: 40px;
-    align-items: start;
-  }
-
-  .headRow > .secHead {
-    max-width: none;
-    margin-bottom: 0;
-  }
-
-  .stats {
-    justify-self: center;
-    margin-top: 64px;
-  }
-
-  .textCol {
-    margin-top: 40px;
-  }
-
-  .livebook {
-    margin-block: 48px;
-    padding: 28px 32px 30px;
-  }
-
-  .lbCols {
-    gap: 36px;
-  }
-
-  .backNote {
-    width: fit-content;
-    margin: 32px 0 0 42%;
-    align-items: flex-start;
-    text-align: left;
-  }
-
-  .backNoteArrow {
-    margin: 8px 0 0 52%;
-  }
-
   /* Problém */
   .fromNoteArrow {
     width: 72px;
@@ -2096,10 +1873,6 @@
 
   .faceArrowDesk {
     left: -88px;
-  }
-
-  .headRow {
-    grid-template-columns: 60% minmax(0, 1fr);
   }
 
   .marginQuote {

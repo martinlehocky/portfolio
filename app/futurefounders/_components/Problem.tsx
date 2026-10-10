@@ -4,7 +4,7 @@ import SectionHead from "./SectionHead"
 import {ArrowLeft, QuestionMark, Scribble} from "./Doodles"
 import {tie} from "./text"
 
-/** 4 · Aký problém ma teraz trápi */
+/** 3 · Aký problém ma teraz trápi */
 export default function Problem() {
   const headingId = `${problem.id}-nadpis`
   return (

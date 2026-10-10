@@ -149,31 +149,6 @@ export function ArrowRightSmall({className}: {className?: string}) {
   )
 }
 
-/** Short arrow between the handwritten numbers in Mníchov. */
-export function ArrowStat({className, draw = true}: DoodleProps) {
-  return (
-    <Svg className={className} viewBox="0 0 20 26" strokeWidth={2}>
-      <Stroke draw={draw} dur={0.3} at=">-0.05" d="M10 2 C 8.5 8, 11.5 14, 10 21" />
-      <Stroke draw={draw} dur={0.15} at=">" d="M5 16.5 C 7 18.5, 8.5 20, 10 22 C 11.5 20, 13 18, 15 16" />
-    </Svg>
-  )
-}
-
-/** Curly arrow pointing down towards the next section. */
-export function ArrowCurly({className, draw = true}: DoodleProps) {
-  return (
-    <Svg className={className} viewBox="0 0 70 122" strokeWidth={2.2}>
-      <Stroke
-        draw={draw}
-        dur={1}
-        at=">-0.1"
-        d="M40 4 C 62 18, 60 44, 40 50 C 22 55, 18 36, 34 32 C 52 28, 56 60, 44 82 C 38 94, 32 104, 28 114"
-      />
-      <Stroke draw={draw} dur={0.2} at=">" d="M19.5 104.5 C 22.5 108, 25 111, 28 115.5 C 31 112, 34 109, 38 106.5" />
-    </Svg>
-  )
-}
-
 /** Arrow pointing left (margin notes pointing back into the text). */
 export function ArrowLeft({className, draw = true, at}: DoodleProps) {
   return (
@@ -190,16 +165,6 @@ export function ArrowQuote({className, draw = true}: DoodleProps) {
     <Svg className={className} viewBox="0 0 60 44" strokeWidth={2}>
       <Stroke draw={draw} dur={0.5} at=">" d="M54 4 C 46 24, 28 34, 6 34" />
       <Stroke draw={draw} dur={0.15} at=">" d="M14 27 C 11 29.5, 8.5 31.5, 5.5 34 C 9 35.5, 12 37, 15 39.5" />
-    </Svg>
-  )
-}
-
-/** Wobbly arrow in the Livebook sketch. */
-export function ArrowDiagram({className, draw = true}: DoodleProps) {
-  return (
-    <Svg className={className} viewBox="0 0 64 24" strokeWidth={2}>
-      <Stroke draw={draw} dur={0.55} at=">" d="M3 13 C 14 8, 24 17, 36 11 C 44 7.5, 52 12, 59 12" />
-      <Stroke draw={draw} dur={0.15} at=">" d="M51 5.5 C 54 8, 57 10, 60 12 C 57 14.5, 54 17, 51 19" />
     </Svg>
   )
 }

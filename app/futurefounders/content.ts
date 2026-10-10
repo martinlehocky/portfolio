@@ -53,7 +53,6 @@ export const ui = {
   tabs: [
     {id: "kto-som", label: "Kto som"},
     {id: "preco", label: "Prečo"},
-    {id: "mnichov", label: "Mníchov"},
     {id: "problem", label: "Problém"},
     {id: "kontakt", label: "Kontakt"},
   ] satisfies readonly TabItem[],
@@ -73,7 +72,6 @@ export const hero = {
   toc: [
     {id: "kto-som", label: "Kto som a čo ma baví"},
     {id: "preco", label: "Prečo robím to, čo robím"},
-    {id: "mnichov", label: "Hacking Legal v Mníchove"},
     {id: "problem", label: "Aký problém ma teraz trápi"},
     {id: "kontakt", label: "Ďakujem a kontakt"},
   ] satisfies readonly TocItem[],
@@ -96,15 +94,15 @@ export const about = {
     title: "čo sa práve učím sám",
     text: "3D modelovanie v Autodesk Maya podľa návodov na YouTube.",
   } satisfies Sticky,
-  // "AlphaGo" gets a hand-drawn circle around it.
+  // "AI" gets a hand-drawn circle around it.
   p3: {
-    before: "Zaujíma ma AI. Nedávno som videl ",
-    mark: "AlphaGo",
-    after: ", dokument Grega Kohsa o DeepMinde, a ešte dlho potom som premýšľal, čo bude AI znamenať pre našu budúcnosť.",
+    before: "Veľmi ma zaujíma ",
+    mark: "AI",
+    after: " a rád sledujem, ako sa vyvíja a čo je v nej nové. Často premýšľam, čo bude znamenať pre našu budúcnosť.",
   } satisfies Marked,
   stickyImade: {
     title: "chcem študovať v Nemecku",
-    text: "Zvažujem odbor International Management and Digital Engineering (IMADE) na Hochschule München, lebo spája technológie s biznisom.",
+    text: "Chcem študovať digital engineering a zároveň sa naučiť, ako založiť vlastný startup a dotiahnuť ho k úspechu. Preto teraz vo voľnom čase chodím aj na kurz nemčiny.",
   } satisfies Sticky,
 } as const
 
@@ -121,7 +119,7 @@ export const why = {
   } satisfies Marked,
   card: {
     label: "2024 · prvý projekt, na ktorý som hrdý",
-    text: "Kvízová platforma, na ktorej sa slovenskí deviataci pripravovali na Testovanie 9. Spustil som ju a potom ju vylepšoval podľa spätnej väzby od žiakov. Vtedy som po prvý raz cítil, že niečo, čo som spravil, niekomu skutočne pomohlo.",
+    text: "Kvízová platforma, na ktorej sa slovenskí deviataci pripravovali na Testovanie 9. Spustil som ju a potom ju vylepšoval podľa spätnej väzby od žiakov. Vtedy som po prvý raz cítil, že niečo, čo som spravil, niekomu skutočne pomohlo. A pomohla aj mne: prispela k tomu, že ma prijali na školu, na ktorej teraz študujem.",
   },
   teya: {
     h3: "Stáž vo firme Teya",
@@ -154,38 +152,9 @@ export const why = {
   },
 } as const
 
-export const munich = {
-  id: "mnichov",
-  number: "3",
-  kicker: "Hacking Legal 2026 · Mníchov",
-  h2: "Išiel som sám a o legal ops som vedel veľmi málo",
-  // The last word of the last line gets a red circle.
-  stats: ["450 prihlásených", "94 prijatých"],
-  statsLast: {before: "jeden z nich som bol ", mark: "ja", after: ""} satisfies Marked,
-  p1: "V apríli 2026 som bol v Mníchove na Hacking Legal, hackathone zameranom na legal tech. Boli tam väčšinou vysokoškoláci a mladí ľudia z praxe, ja som prišiel ako stredoškolák.",
-  p2: "V tíme sme riešili zadanie od Siemensu a za 24 hodín sme postavili Livebook. Ja som robil frontend v Next.js.",
-  livebook: {
-    title: "Livebook",
-    diagramFrom: "statický playbook",
-    diagramTo: "Livebook",
-    diagramLabel: "Náčrt: zo statického playbooku sa stane Livebook.",
-    intro: "Livebook robí zo statického právneho playbooku živý nástroj.",
-    business: {
-      label: "pre ľudí z biznisu",
-      text: "Pýtajú sa bežnou rečou a hneď dostanú odpoveď s odkazom na konkrétne klauzuly. Livebook ich aj upozorní, keď treba vec eskalovať.",
-    },
-    lawyers: {
-      label: "pre právnikov",
-      text: "Majú históriu verzií, môžu upravovať priamo v texte a nástroj im sám navrhuje aktualizácie.",
-    },
-  },
-  p3: "Až tam mi došlo, aké zložité sú legal ops, a odvtedy mám pred nimi rešpekt. Spoznal som tam aj skvelých ľudí, akých som už dlho nestretol.",
-  annotation: "k jednej myšlienke sa ešte vrátim",
-} as const
-
 export const problem = {
   id: "problem",
-  number: "4",
+  number: "3",
   kicker: "Aký problém ma teraz trápi",
   h2: "Veľa mladých ľudí nevie, čo chce v živote robiť",
   p1: "Rád by som prišiel na niečo, čo by im pomohlo. Hotové riešenie zatiaľ nemám a nebudem sa tváriť, že mám. Myslím si však, že to nevadí.",
@@ -209,6 +178,11 @@ export const projects = {
   kicker: "ďalšie strany",
   h2: "Čo som ešte spravil",
   items: [
+    {
+      date: "2026",
+      name: "iOrdinácia",
+      text: "Online rezervačný systém pre súkromné ambulancie. Pacienti sa objednajú sami cez rezervačnú stránku a systém im pred termínom automaticky pošle pripomienku e-mailom aj SMS. Ambulancia má kalendár termínov, zoznam pacientov a GDPR súhlasy sa zbierajú automaticky.",
+    },
     {
       date: "2025 – 2026",
       name: "Plannie",
