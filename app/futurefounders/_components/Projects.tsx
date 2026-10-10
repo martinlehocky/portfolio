@@ -25,6 +25,13 @@ export default function Projects() {
               </div>
             </li>
           ))}
+          <li className={s.project} data-seq data-start="top 92%">
+            <span className={s.projectRule} data-step="line" aria-hidden="true" />
+            <span className={`${s.projectDate} ${s.projectDateEmpty}`} aria-hidden="true" />
+            <p className={s.projectMore} data-step="fade">
+              {projects.more}
+            </p>
+          </li>
         </ul>
       </div>
     </section>

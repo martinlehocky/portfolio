@@ -118,7 +118,7 @@ export const why = {
     after: "",
   } satisfies Marked,
   card: {
-    label: "2024 · prvý projekt, na ktorý som hrdý",
+    label: "2023 · prvý projekt, na ktorý som hrdý",
     text: "Kvízová platforma, na ktorej sa slovenskí deviataci pripravovali na Testovanie 9. Spustil som ju a potom ju vylepšoval podľa spätnej väzby od žiakov. Vtedy som po prvý raz cítil, že niečo, čo som spravil, niekomu skutočne pomohlo. A pomohla aj mne: prispela k tomu, že ma prijali na školu, na ktorej teraz študujem.",
   },
   teya: {
@@ -199,6 +199,8 @@ export const projects = {
       text: "Organizoval som školský hackathon HalovaMake. Na HalovaJam som pod časovým tlakom robil prototyp a na medzinárodnom Hack Club Campfire GameJam som za 48 hodín spravil a zverejnil hrateľnú hru.",
     },
   ] satisfies readonly ProjectItem[],
+  // Handwritten line under the list.
+  more: "…a niekoľko ďalších",
 } as const
 
 export const ending = {

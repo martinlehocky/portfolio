@@ -1113,6 +1113,15 @@
   text-wrap: pretty;
 }
 
+.projectMore {
+  width: fit-content;
+  font-family: var(--f-hand);
+  font-size: var(--fs-hand);
+  line-height: 1.2;
+  color: var(--pen);
+  rotate: -1.5deg;
+}
+
 /* ───────── Koniec ───────── */
 
 .sectionEnding {
