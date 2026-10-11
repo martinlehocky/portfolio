@@ -64,7 +64,7 @@ export const hero = {
   kicker: "zápisník pre Future Founders",
   firstName: "Martin",
   lastName: "Lehocký",
-  lead: "Som študent z Bratislavy. Od roku 2023 chodím na SPŠ Elektrotechnická Hálova, kde študujem odbor programovanie digitálnych technológií.",
+  lead: "Som študent z Bratislavy. Od roku 2024 chodím na SPŠ Elektrotechnická Hálova, kde študujem odbor programovanie digitálnych technológií.",
   intro: "Namiesto klasickej prezentácie som vám to celé spísal do zápisníka. Prečítate ho asi za päť minút.",
   photoCaption: "Rím, Koloseum, večer",
   photoAnnotation: "to som ja",
