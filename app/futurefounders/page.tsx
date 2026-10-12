@@ -8,6 +8,7 @@ import Tabs from "./_components/Tabs"
 import Hero from "./_components/Hero"
 import About from "./_components/About"
 import Why from "./_components/Why"
+import Hackathons from "./_components/Hackathons"
 import Problem from "./_components/Problem"
 import Projects from "./_components/Projects"
 import Ending from "./_components/Ending"
@@ -33,6 +34,7 @@ export default function ZapisnikPage() {
         <Hero />
         <About />
         <Why />
+        <Hackathons />
         <Problem />
         <Projects />
         <Ending />

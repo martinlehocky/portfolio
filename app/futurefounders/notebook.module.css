@@ -216,7 +216,8 @@
   white-space: nowrap;
 }
 
-.circledSvg {
+.circledSvg,
+.circledSvgSmall {
   position: absolute;
   top: -6px;
   left: -8px;
@@ -980,7 +981,214 @@
   padding-top: 32px;
 }
 
-/* ───────── 3 · Problém ───────── */
+/* ───────── 3 · Hackathony ───────── */
+
+/* The next hackathon: a ticket pinned to the page, with a red note under it. */
+.nextPlace {
+  width: 100%;
+  max-width: 360px;
+  margin: 44px 0 8px auto;
+  rotate: 1.5deg;
+  filter: var(--drop);
+}
+
+.nextPin {
+  position: absolute;
+  z-index: 2;
+  top: -8px;
+  left: calc(36% + 34px);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #f27a6c 0 18%, var(--pen-red) 45%, #7d150d 100%);
+  box-shadow: 1px 2px 2px rgba(70, 50, 20, 0.35);
+}
+
+.ticketNext {
+  background: var(--sticky-blue);
+}
+
+.nextName {
+  font-weight: 700;
+  font-size: var(--fs-small);
+  line-height: 1.25;
+}
+
+.nextDate {
+  font-family: var(--f-hand);
+  font-size: 1.25rem;
+  line-height: 1.2;
+  color: var(--pen);
+}
+
+.nextNote {
+  position: relative;
+  width: fit-content;
+  margin: 14px 12px 0 auto;
+  font-family: var(--f-hand);
+  font-size: var(--fs-hand);
+  line-height: 1.2;
+  color: var(--pen-red);
+  rotate: -3deg;
+}
+
+/* Hacking Legal */
+.munich {
+  margin-top: 72px;
+}
+
+.munichP {
+  margin-top: 16px;
+}
+
+.stats {
+  display: grid;
+  justify-items: start;
+  width: fit-content;
+  margin: 32px 0 0 10px;
+  padding: 0;
+  list-style: none;
+  font-family: var(--f-hand);
+  font-weight: 700;
+  font-size: var(--fs-hand);
+  line-height: 1.2;
+  color: var(--pen);
+  rotate: -2deg;
+}
+
+.statGroup {
+  display: grid;
+  justify-items: start;
+}
+
+.statLine {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.statArrow {
+  width: 18px;
+  height: 24px;
+  margin: 3px 0 3px 22px;
+}
+
+.stats .circled {
+  margin-inline: 0.3em 0;
+}
+
+.circledSvgSmall {
+  top: -4px;
+  left: -7px;
+  width: calc(100% + 16px);
+  height: calc(100% + 8px);
+}
+
+.livebook {
+  max-width: 760px;
+  margin-block: 40px;
+  padding: 20px 20px 24px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  rotate: -0.75deg;
+}
+
+.lbHead {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.lbTitle {
+  font-family: var(--f-head);
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.1;
+}
+
+.diagram {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+}
+
+.diagramFrom,
+.diagramTo {
+  display: inline-block;
+  padding: 5px 10px 6px;
+  font-family: var(--f-hand);
+  font-size: 1.25rem;
+  line-height: 1.15;
+}
+
+.diagramFrom {
+  width: min-content;
+  border: 2px dashed var(--ink);
+  border-radius: 4px 7px 5px 6px;
+  rotate: -1.5deg;
+}
+
+.diagramTo {
+  font-weight: 700;
+  background: var(--sticky-yellow);
+  border: 2px solid var(--ink);
+  border-radius: 6px 4px 7px 5px;
+  rotate: 1deg;
+}
+
+.diagramArrow {
+  flex: none;
+  width: 52px;
+  height: 22px;
+  color: var(--ink);
+}
+
+.lbIntro {
+  margin-top: 18px;
+  text-wrap: pretty;
+}
+
+.lbCols {
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.lbCol {
+  padding-top: 14px;
+  border-top: 1.5px dashed rgba(30, 36, 48, 0.25);
+}
+
+.lbLabel {
+  font-family: var(--f-hand);
+  font-size: var(--fs-hand);
+  line-height: 1.2;
+  color: var(--pen);
+}
+
+.lbText {
+  margin-top: 4px;
+  font-size: var(--fs-note);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+/* The earlier ones */
+.earlier {
+  margin-top: 64px;
+}
+
+.earlierTitle {
+  width: fit-content;
+  margin-bottom: 4px;
+  font-family: var(--f-hand);
+  font-size: var(--fs-hand);
+  line-height: 1.2;
+  color: var(--pen);
+  rotate: -1.5deg;
+}
+
+/* ───────── 4 · Problém ───────── */
 
 .fromNote {
   display: flex;
@@ -1379,6 +1587,7 @@
   }
 
   .ticketPlace:hover,
+  .nextPlace:hover,
   .todoPlace:hover {
     filter: var(--drop-lift);
     box-shadow: none;
@@ -1484,6 +1693,26 @@
 
   .stickyHr {
     margin-left: 40px;
+  }
+
+  .nextPlace {
+    margin-right: 32px;
+  }
+
+  .diagramFrom {
+    width: auto;
+  }
+
+  .lbHead {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .lbCols {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
   }
 
   .letter {
@@ -1736,7 +1965,8 @@
     max-width: none;
   }
 
-  .pairTop > .p {
+  .pairTop > .p,
+  .pairTop > .pairText {
     grid-column: 1;
     grid-row: 2;
   }
@@ -1817,6 +2047,47 @@
 
   .todoTitle {
     font-size: 2.125rem;
+  }
+
+  /* Hackathony */
+  .nextPlace {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    width: min(100%, 360px);
+    margin: 72px 0 0 auto;
+  }
+
+  .munich {
+    margin-top: 96px;
+  }
+
+  .headRow {
+    display: grid;
+    grid-template-columns: var(--text-w) minmax(0, 1fr);
+    column-gap: 48px;
+    align-items: start;
+  }
+
+  .stats {
+    justify-self: center;
+    margin-top: 64px;
+  }
+
+  .livebook {
+    margin-block: 48px;
+    padding: 28px 32px 30px;
+  }
+
+  .lbCols {
+    gap: 36px;
+  }
+
+  .munich > .p {
+    max-width: var(--text-w);
+  }
+
+  .earlier {
+    margin-top: 80px;
   }
 
   /* Problém */

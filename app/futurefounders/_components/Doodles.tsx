@@ -271,3 +271,23 @@ export function Scribble({className, draw = true, dur = 0.6, at}: DoodleProps) {
     </Svg>
   )
 }
+
+/** Short arrow between the handwritten numbers in Hackathony. */
+export function ArrowStat({className, draw = true}: DoodleProps) {
+  return (
+    <Svg className={className} viewBox="0 0 20 26" strokeWidth={2}>
+      <Stroke draw={draw} dur={0.3} at=">-0.05" d="M10 2 C 8.5 8, 11.5 14, 10 21" />
+      <Stroke draw={draw} dur={0.15} at=">" d="M5 16.5 C 7 18.5, 8.5 20, 10 22 C 11.5 20, 13 18, 15 16" />
+    </Svg>
+  )
+}
+
+/** Wobbly arrow in the Livebook sketch. */
+export function ArrowDiagram({className, draw = true}: DoodleProps) {
+  return (
+    <Svg className={className} viewBox="0 0 64 24" strokeWidth={2}>
+      <Stroke draw={draw} dur={0.55} at=">" d="M3 13 C 14 8, 24 17, 36 11 C 44 7.5, 52 12, 59 12" />
+      <Stroke draw={draw} dur={0.15} at=">" d="M51 5.5 C 54 8, 57 10, 60 12 C 57 14.5, 54 17, 51 19" />
+    </Svg>
+  )
+}

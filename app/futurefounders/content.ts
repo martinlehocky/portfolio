@@ -53,6 +53,7 @@ export const ui = {
   tabs: [
     {id: "kto-som", label: "Kto som"},
     {id: "preco", label: "Prečo"},
+    {id: "hackathony", label: "Hackathony"},
     {id: "problem", label: "Problém"},
     {id: "kontakt", label: "Kontakt"},
   ] satisfies readonly TabItem[],
@@ -72,6 +73,7 @@ export const hero = {
   toc: [
     {id: "kto-som", label: "Kto som a čo ma baví"},
     {id: "preco", label: "Prečo robím to, čo robím"},
+    {id: "hackathony", label: "Hackathony"},
     {id: "problem", label: "Aký problém ma teraz trápi"},
     {id: "kontakt", label: "Ďakujem a kontakt"},
   ] satisfies readonly TocItem[],
@@ -152,9 +154,74 @@ export const why = {
   },
 } as const
 
+export type EventItem = {
+  date: string
+  name: string
+  text: string
+}
+
+export const hackathons = {
+  id: "hackathony",
+  number: "3",
+  kicker: "Hackathony",
+  h2: "Za víkend z nápadu niečo, čo funguje",
+  p1: "Hackathony ma bavia, lebo na nich nie je čas iba premýšľať. Za pár hodín treba spraviť niečo, čo sa dá naozaj ukázať. Začínal som na školských, dnes chodím aj do zahraničia.",
+  // The next one, pinned up like a ticket. `name` is optional (the ticket shows it above the place).
+  next: {
+    stub: "ďalší hackathon",
+    name: "LauzHack 2026",
+    place: "Lausanne",
+    date: "21. – 22. 11. 2026",
+    note: "už o mesiac!",
+  },
+  nextText: "Budúci mesiac idem na LauzHack 2026 do Lausanne vo Švajčiarsku. Je to 24-hodinový hackathon, ktorý organizujú študenti na EPFL. Teším sa na nové prostredie a nových ľudí.",
+  munich: {
+    h3: "Hacking Legal 2026 v Mníchove",
+    // The last word of the last line gets a red circle.
+    stats: ["450 prihlásených", "94 prijatých"],
+    statsLast: {before: "jeden z nich som bol ", mark: "ja", after: ""} satisfies Marked,
+    p1: "V apríli 2026 som bol v Mníchove na Hacking Legal, hackathone zameranom na legal tech. Boli tam väčšinou vysokoškoláci a mladí ľudia z praxe, ja som prišiel ako stredoškolák a o legal ops som vedel veľmi málo.",
+    p2: "V tíme sme riešili zadanie od Siemensu a za 24 hodín sme postavili Livebook. Ja som robil frontend v Next.js.",
+    p3: "Až tam mi došlo, aké zložité sú legal ops, a odvtedy mám pred nimi rešpekt. Spoznal som tam aj skvelých ľudí, akých som už dlho nestretol.",
+  },
+  livebook: {
+    title: "Livebook",
+    diagramFrom: "statický playbook",
+    diagramTo: "Livebook",
+    diagramLabel: "Náčrt: zo statického playbooku sa stane Livebook.",
+    intro: "Livebook robí zo statického právneho playbooku živý nástroj.",
+    business: {
+      label: "pre ľudí z biznisu",
+      text: "Pýtajú sa bežnou rečou a hneď dostanú odpoveď s odkazom na konkrétne klauzuly. Livebook ich aj upozorní, keď treba vec eskalovať.",
+    },
+    lawyers: {
+      label: "pre právnikov",
+      text: "Majú históriu verzií, môžu upravovať priamo v texte a nástroj im sám navrhuje aktualizácie.",
+    },
+  },
+  earlierTitle: "a predtým",
+  earlier: [
+    {
+      date: "2026",
+      name: "HalovaMake",
+      text: "Školský hackathon, ktorý som organizoval.",
+    },
+    {
+      date: "2026",
+      name: "Hack Club Campfire GameJam",
+      text: "Medzinárodný game jam, na ktorom som za 48 hodín spravil a zverejnil hrateľnú hru.",
+    },
+    {
+      date: "2025",
+      name: "HalovaJam",
+      text: "Školský hackathon, na ktorom som pod časovým tlakom robil prototyp.",
+    },
+  ] satisfies readonly EventItem[],
+} as const
+
 export const problem = {
   id: "problem",
-  number: "3",
+  number: "4",
   kicker: "Aký problém ma teraz trápi",
   h2: "Veľa mladých ľudí nevie, čo chce v živote robiť",
   p1: "Rád by som prišiel na niečo, čo by im pomohlo. Hotové riešenie zatiaľ nemám a nebudem sa tváriť, že mám. Myslím si však, že to nevadí.",
@@ -192,11 +259,6 @@ export const projects = {
       date: "2024",
       name: "Healthie",
       text: "Natívna iOS aplikácia v SwiftUI s Apple HealthKit. Dá sa v nej plánovať deň, zapisovať kalórie a sledovať pitný režim.",
-    },
-    {
-      date: "",
-      name: "Hackathony",
-      text: "Organizoval som školský hackathon HalovaMake. Na HalovaJam som pod časovým tlakom robil prototyp a na medzinárodnom Hack Club Campfire GameJam som za 48 hodín spravil a zverejnil hrateľnú hru.",
     },
   ] satisfies readonly ProjectItem[],
   // Handwritten line under the list.
